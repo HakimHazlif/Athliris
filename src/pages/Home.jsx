@@ -1,9 +1,5 @@
-import { useDay } from '../features/useDay'
-
 const Home = () => {
-  // const { data, isLoading } = useDay()
-
-  return <div>Home</div>
+  return <div className="bg-red-500 text-6xl">Home</div>
 }
 
 export default Home
