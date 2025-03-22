@@ -3,14 +3,12 @@ import { auth, db } from './firebase'
 import {
   confirmPasswordReset,
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
 } from 'firebase/auth'
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
-import { setUser, setUserFailure } from '../app/slices/authSlice'
 
 export const signup = createAsyncThunk(
   'user/signup',

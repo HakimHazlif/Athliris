@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux'
 
-const UserAvatar = ({ size, textSize = "text-lg" }) => {
-  const { username, avatar } = useSelector((state) => state.user.user);
+const UserAvatar = ({ size, textSize = 'text-lg' }) => {
+  const { username, avatar } = useSelector((state) => state.user.user)
 
   return (
     <div
@@ -15,13 +15,13 @@ const UserAvatar = ({ size, textSize = "text-lg" }) => {
         />
       ) : (
         <div
-          className={`w-full h-full flex justify-center items-center bg-orange-coral ${textSize} text-slate-200 capitalize `}
+          className={`w-full h-full flex justify-center items-center bg-orange-500 ${textSize} text-slate-200 capitalize `}
         >
           {username.charAt(0)}
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default UserAvatar;
+export default UserAvatar

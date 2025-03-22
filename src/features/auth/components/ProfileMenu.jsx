@@ -30,33 +30,32 @@ const ProfileMenu = ({ onClose, profileRef }) => {
 
   return (
     <div
-      className="bg-white absolute right-0 sm:top-8 top-7 z-50 text-black w-[270px] max-w-[320px] min-w-[230px] rounded-lg py-3 px-3"
+      className="bg-white shadow-lg absolute right-0 sm:top-8 top-7 z-50 text-black w-[270px] max-w-[320px] min-w-[230px] rounded-lg py-4 px-4"
       ref={menuRef}
     >
       <Link
         to={``}
-        className="flex gap-4 justify-start items-center px-3 pt-3 pb-4 "
+        className="flex gap-4 items-center p-3 pl-0 hover:bg-gray-100 rounded-lg transition -mx-3"
         onClick={onClose}
       >
-        <div className="relative">
+        <div className="relative px-3">
           <UserAvatar size="w-11 h-11" textSize="text-xl" />
 
-          <div className="absolute z-30 w-[10px] h-[10px] bg-green-500 rounded-full bottom-[0px] right-0"></div>
+          <div className="absolute z-30 w-3 h-3 bg-green-500 border-2 border-white rounded-full bottom-1 right-2"></div>
         </div>
         <div>
-          <p className="font-bold text-xl">{username}</p>
-          <p className="text-slate-500 font-medium text-sm">{email}</p>
+          <p className="font-semibold text-lg">{username}</p>
+          <p className="text-slate-500 text-sm">{email}</p>
         </div>
       </Link>
-      <Navbar forDesktop={false} />
-      <div>
-        <button
-          className="bg-neon-500 text-white px-4 py-2 rounded-md transition duration-200"
-          onClick={() => dispatch(logOut())}
-        >
-          Log Out
-        </button>
-      </div>
+
+      <Navbar forDesktop={false} onClose={onClose} />
+      <button
+        onClick={() => dispatch(logOut())}
+        className="w-full mt-4 bg-red-500 hover:bg-red-600 text-white font-medium py-2 rounded-lg transition"
+      >
+        Log out
+      </button>
     </div>
   )
 }

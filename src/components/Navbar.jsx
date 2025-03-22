@@ -1,19 +1,12 @@
-import {
-  IoHomeOutline,
-  IoHomeSharp,
-  IoSettingsOutline,
-  IoSettingsSharp,
-} from 'react-icons/io5'
+import { IoHomeSharp, IoSettingsSharp } from 'react-icons/io5'
 import { Navigation } from './Navigation'
-import { LuActivity, LuApple } from 'react-icons/lu'
 import { RiBarChartFill } from 'react-icons/ri'
-import { PiBarbell } from 'react-icons/pi'
 import { TbBarbellFilled } from 'react-icons/tb'
 import { FaAppleAlt } from 'react-icons/fa'
 
 const navigations = [
   {
-    link: '#',
+    link: '/',
     children: (
       <>
         <IoHomeSharp size={18} />
@@ -59,7 +52,7 @@ const navigations = [
   },
 ]
 
-const Navbar = ({ forDesktop = true }) => {
+const Navbar = ({ forDesktop = true, onClose = null }) => {
   const navigationsMap = forDesktop ? navigations.slice(0, 3) : navigations
 
   return (
@@ -71,7 +64,12 @@ const Navbar = ({ forDesktop = true }) => {
       }
     >
       {navigationsMap.map((el, index) => (
-        <Navigation key={index} link={el.link}>
+        <Navigation
+          key={index}
+          link={el.link}
+          forDesktop={forDesktop}
+          onClose={onClose}
+        >
           {el.children}
         </Navigation>
       ))}
