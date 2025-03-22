@@ -1,12 +1,27 @@
 import { useSelector } from 'react-redux'
 import { userData } from '../../../app/slices/authSlice'
+import { useRef, useState } from 'react'
+import ProfileMenu from './ProfileMenu'
 
 const UserProfile = () => {
+  const [isDropDown, setIsDropDown] = useState(false)
+  const profileRef = useRef()
+
   const { avatar, username } = useSelector(userData)
+
+  function handleMenuToggle(e) {
+    e.stopPropagation()
+
+    setIsDropDown((prev) => !prev)
+  }
 
   return (
     <div className="relative">
-      <button className="flex items-center gap-2 group">
+      <button
+        className="flex items-center gap-2 group"
+        ref={profileRef}
+        onClick={handleMenuToggle}
+      >
         <div className="sm:w-[27px] sm:h-[27px] w-[25px] h-[25px] rounded-full overflow-hidden ring-2">
           {avatar ? (
             <img
@@ -24,6 +39,13 @@ const UserProfile = () => {
           {username}
         </span>
       </button>
+
+      {isDropDown && (
+        <ProfileMenu
+          onClose={() => setIsDropDown(false)}
+          profileRef={profileRef}
+        />
+      )}
     </div>
   )
 }

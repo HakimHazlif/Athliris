@@ -6,6 +6,10 @@ import Login from './features/auth/pages/Login'
 import Signup from './features/auth/pages/Signup'
 import { Provider } from 'react-redux'
 import store from './app/store'
+import ResetPassword from './features/auth/pages/ResetPassword'
+import ChangePassword from './features/auth/pages/ChangePassword'
+import SendResetEmail from './features/auth/pages/SendResetEmail'
+import { Toaster } from 'react-hot-toast'
 
 const queryClient = new QueryClient()
 
@@ -19,7 +23,36 @@ function App() {
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="reset-password" element={<ResetPassword />}>
+            <Route index element={<SendResetEmail />} />
+            <Route path="change" element={<ChangePassword />} />
+          </Route>
         </Routes>
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: '8px' }}
+          toastOptions={{
+            success: {
+              duration: 3000,
+              style: {
+                color: 'green',
+              },
+            },
+            error: {
+              duration: 5000,
+              style: {
+                color: 'red',
+              },
+            },
+            style: {
+              fontSize: '16px',
+              maxWidth: '500px',
+              padding: '16px 24px',
+              backgroundColor: '#faf7f5',
+            },
+          }}
+        />
       </Provider>
     </QueryClientProvider>
   )

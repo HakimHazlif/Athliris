@@ -11,7 +11,7 @@ import SubmitionButton from '../../../components/SubmitionButton'
 import AuthHeader from '../components/AuthHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../../api/apiAuth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -34,7 +34,7 @@ const Login = () => {
   }, [isLoggedIn, navigate])
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 main-bg">
       <AuthHeader isLogin={true} />
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
@@ -81,6 +81,14 @@ const Login = () => {
               </Form>
             )}
           </Formik>
+          <div className="flex justify-center mt-4">
+            <Link
+              to="/reset-password"
+              className="text-sm text-grayish-400 hover:text-grayish-500 text-center"
+            >
+              Forget password?
+            </Link>
+          </div>
         </div>
       </div>
     </div>

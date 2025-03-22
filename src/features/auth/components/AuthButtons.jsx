@@ -12,11 +12,11 @@ const AuthButtons = ({ forDesktop = true }) => {
     >
       <AuthButton
         text="Log In"
-        className="text-indigo-600 bg-white  hover:bg-indigo-100"
+        className="text-neon-500 hover:text-neon-600 bg-white hover:bg-neon-100"
       />
       <AuthButton
         text="Sign Up"
-        className="text-white bg-indigo-800 hover:bg-indigo-900"
+        className="text-white bg-neon-600 hover:bg-neon-700"
       />
     </div>
   )

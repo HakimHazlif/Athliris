@@ -1,4 +1,9 @@
-import { IoHomeOutline, IoHomeSharp, IoSettingsOutline } from 'react-icons/io5'
+import {
+  IoHomeOutline,
+  IoHomeSharp,
+  IoSettingsOutline,
+  IoSettingsSharp,
+} from 'react-icons/io5'
 import { Navigation } from './Navigation'
 import { LuActivity, LuApple } from 'react-icons/lu'
 import { RiBarChartFill } from 'react-icons/ri'
@@ -43,9 +48,20 @@ const navigations = [
       </>
     ),
   },
+  {
+    link: '#',
+    children: (
+      <>
+        <IoSettingsSharp size={18} />
+        <span>Settings</span>
+      </>
+    ),
+  },
 ]
 
 const Navbar = ({ forDesktop = true }) => {
+  const navigationsMap = forDesktop ? navigations.slice(0, 3) : navigations
+
   return (
     <nav
       className={
@@ -54,7 +70,7 @@ const Navbar = ({ forDesktop = true }) => {
           : 'flex flex-col items-start gap-2'
       }
     >
-      {navigations.map((el, index) => (
+      {navigationsMap.map((el, index) => (
         <Navigation key={index} link={el.link}>
           {el.children}
         </Navigation>

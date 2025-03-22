@@ -6,10 +6,9 @@ import Logo from './Logo'
 import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import UserProfile from '../features/auth/components/UserProfile'
-import { logOut } from '../api/apiAuth'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../api/firebase'
-import { setUser } from '../app/slices/authSlice'
+import { setUser, setUserFailure } from '../app/slices/authSlice'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -37,7 +36,7 @@ const Header = () => {
           })
         )
       } else {
-        dispatch(logOut())
+        dispatch(setUserFailure())
       }
     })
 
@@ -45,7 +44,7 @@ const Header = () => {
   }, [dispatch])
 
   return (
-    <header className="bg-slate-500 text-white shadow-md">
+    <header className="text-white shadow-md ">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

@@ -1,6 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #121212,
+    #121212,
+    #26141e,
+    #2a0527,
+    #460440
+  );
+  font-family: 'Montserrat', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Oswald', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.main-bg {
+  background: linear-gradient(
+    to bottom,
+    #121212,
+    #121212,
+    #26141e,
+    #2a0527,
+    #460440
+  );
+}
 
 .spinner {
   margin: 4.8rem auto;
@@ -22,26 +63,4 @@
   to {
     transform: rotate(1turn);
   }
-}
-
-.dark {
-  color: #121212;
-  color: #1e1e1e;
-  color: #2d2d2d;
-  color: #ffffff; /*For main text*/
-  color: #bdbdbd; /*for sub text */
-}
-
-.light {
-  color: #ffffff;
-  color: #faf7f5;
-  color: #333333; /*For main text*/
-  color: #6e7a8a; /*for sub text*/
-}
-
-.main-color {
-  color: #39ff14;
-  color: #2ecc71; /*for hovering*/
-  color: #e74c3c; /*for warning*/
-  color: #3498db; /*sub color*/
 }
