@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IoClose, IoMenu } from 'react-icons/io5'
 
 import AuthButtons from '../features/auth/components/AuthButtons'
@@ -9,12 +9,14 @@ import UserProfile from '../features/auth/components/UserProfile'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../api/firebase'
 import { setUser, setUserFailure } from '../app/slices/authSlice'
+import ProfileMenu from '../features/auth/components/ProfileMenu'
 
 const Header = () => {
   const dispatch = useDispatch()
   const { isLoggedIn, error, status, user } = useSelector((state) => state.user)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuRef = useRef()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -47,35 +49,37 @@ const Header = () => {
     <header className="text-white shadow-md ">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <div className="w-32">
             <Logo />
           </div>
 
-          {/* Desktop Navigation */}
           <Navbar />
 
-          {/* Auth Buttons */}
           <div className="hidden md:inline-block">
-            {isLoggedIn ? <UserProfile /> : <AuthButtons />}
+            {isLoggedIn ? (
+              <UserProfile />
+            ) : (
+              <div className="w-56">
+                <AuthButtons />
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu} className="p-2">
+          <div className="md:hidden relative">
+            <button onClick={toggleMenu} className="p-2" ref={menuRef}>
               {isMenuOpen ? <IoClose size={24} /> : <IoMenu size={24} />}
             </button>
+
+            {isMenuOpen && (
+              <ProfileMenu
+                onClose={() => setIsMenuOpen(false)}
+                profileRef={menuRef}
+              />
+            )}
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden p-4 bg-indigo-700 space-y-3">
-          <Navbar forDesktop={false} />
-          <AuthButtons forDesktop={false} />
-        </div>
-      )}
     </header>
   )
 }

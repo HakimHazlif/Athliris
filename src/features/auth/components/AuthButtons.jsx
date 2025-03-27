@@ -4,7 +4,7 @@ import AuthButton from './AuthButton'
 const AuthButtons = ({ forDesktop = true }) => {
   return (
     <div
-      className={`flex items-center ${
+      className={`flex items-center w-full ${
         forDesktop
           ? 'space-x-3'
           : 'flex-col space-y-2 pt-2 border-t border-indigo-600'
@@ -12,7 +12,7 @@ const AuthButtons = ({ forDesktop = true }) => {
     >
       <AuthButton
         text="Log In"
-        className="text-neon-500 hover:text-neon-600 bg-white hover:bg-neon-100"
+        className="text-neon-700 bg-neon-100 hover:bg-neon-200"
       />
       <AuthButton
         text="Sign Up"
