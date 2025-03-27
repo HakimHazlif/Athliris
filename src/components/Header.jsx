@@ -14,7 +14,9 @@ import ThemeToggle from './ThemeToggle'
 
 const Header = () => {
   const dispatch = useDispatch()
-  const { isLoggedIn, error, status, user } = useSelector((state) => state.user)
+  const { isLoggedIn, error, status, user } = useSelector(
+    (state) => state.userAuth
+  )
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuRef = useRef()

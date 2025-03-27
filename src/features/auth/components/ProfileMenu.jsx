@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import UserAvatar from '../../../components/UserAvatar'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { userData } from '../../../app/slices/authSlice'
+import { user } from '../../../app/slices/authSlice'
 import Navbar from '../../../components/Navbar'
 import { Link } from 'react-router-dom'
 import { logOut } from '../service/apiAuth'
@@ -10,8 +10,8 @@ import AuthButtons from './AuthButtons'
 
 const ProfileMenu = ({ onClose, profileRef }) => {
   const dispatch = useDispatch()
-  const { isLoggedIn } = useSelector((state) => state.user)
-  const { username, email } = useSelector(userData)
+  const { isLoggedIn } = useSelector((state) => state.userAuth)
+  const { username, email } = useSelector(user)
   const menuRef = useRef()
 
   useEffect(() => {

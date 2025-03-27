@@ -123,7 +123,7 @@ const authSlice = createSlice({
   },
 })
 
-export const userData = (state) => state.user.user
+export const user = (state) => state.userAuth.user
 
 export const { setUser, setUserFailure } = authSlice.actions
 export default authSlice.reducer

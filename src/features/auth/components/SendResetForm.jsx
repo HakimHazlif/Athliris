@@ -17,7 +17,7 @@ const SendResetSchema = Yup.object().shape({
 
 const SendResetForm = () => {
   const dispatch = useDispatch()
-  const { status } = useSelector((state) => state.user)
+  const { status } = useSelector((state) => state.userAuth)
 
   return (
     <>

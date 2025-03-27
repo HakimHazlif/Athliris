@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import ResetHeader from '../components/ResetHeader'
-import { userData } from '../../../app/slices/authSlice'
+import { user } from '../../../app/slices/authSlice'
 import SendResetForm from '../components/SendResetForm'
 
 const SendResetEmail = () => {
-  const { status } = useSelector((state) => state.user)
-  const { email } = useSelector(userData)
+  const { status } = useSelector((state) => state.userAuth)
+  const { email } = useSelector(user)
 
   const [isSended, setIsSended] = useState(false)
 

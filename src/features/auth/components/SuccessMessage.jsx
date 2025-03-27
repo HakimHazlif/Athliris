@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
-import { userData } from '../../../app/slices/authSlice'
+import { user } from '../../../app/slices/authSlice'
 import { GiLetterBomb } from 'react-icons/gi'
 
 const SuccessMessage = () => {
-  const { email } = useSelector(userData)
+  const { email } = useSelector(user)
   return (
     <div className="flex flex-col text-center justify-center items-center gap-5 p-10">
       <GiLetterBomb size={30} className="text-neon-500" />

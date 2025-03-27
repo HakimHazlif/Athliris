@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux'
+import { user } from '../app/slices/authSlice'
 
 const UserAvatar = ({ size, textSize = 'text-lg' }) => {
-  const { username, avatar } = useSelector((state) => state.user.user)
+  const { username, avatar } = useSelector(user)
 
   return (
     <div

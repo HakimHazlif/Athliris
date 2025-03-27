@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { userData } from '../../../app/slices/authSlice'
+import { user } from '../../../app/slices/authSlice'
 import { useRef, useState } from 'react'
 import ProfileMenu from './ProfileMenu'
 
@@ -7,7 +7,7 @@ const UserProfile = () => {
   const [isDropDown, setIsDropDown] = useState(false)
   const profileRef = useRef()
 
-  const { avatar, username } = useSelector(userData)
+  const { avatar, username } = useSelector(user)
 
   function handleMenuToggle(e) {
     e.stopPropagation()

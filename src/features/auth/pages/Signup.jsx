@@ -38,7 +38,7 @@ const SignupSchema = Yup.object().shape({
 const Signup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { status, user, isLoggedIn } = useSelector((state) => state.user)
+  const { status, user, isLoggedIn } = useSelector((state) => state.userAuth)
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)

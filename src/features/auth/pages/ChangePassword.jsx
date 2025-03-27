@@ -22,7 +22,7 @@ const SendResetSchema = Yup.object().shape({
 const ChangePassword = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { status } = useSelector((state) => state.user)
+  const { status } = useSelector((state) => state.userAuth)
   const [searchParams] = useSearchParams()
 
   const oobCode = searchParams.get('oobCode')

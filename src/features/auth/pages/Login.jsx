@@ -22,7 +22,7 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { status, user, isLoggedIn } = useSelector((state) => state.user)
+  const { status, user, isLoggedIn } = useSelector((state) => state.userAuth)
 
   const [showPassword, setShowPassword] = useState(false)
 
