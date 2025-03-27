@@ -5,7 +5,7 @@ import InputField from './InputField'
 import { MdAlternateEmail } from 'react-icons/md'
 import SubmitionButton from '../../../components/SubmitionButton'
 import SpinnerMini from '../../../components/SpinnerMini'
-import { sendResetEmail } from '../../../api/apiAuth'
+import { sendResetEmail } from '../service/apiAuth'
 import { Link } from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
 

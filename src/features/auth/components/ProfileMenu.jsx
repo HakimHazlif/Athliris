@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { userData } from '../../../app/slices/authSlice'
 import Navbar from '../../../components/Navbar'
 import { Link } from 'react-router-dom'
-import { logOut } from '../../../api/apiAuth'
+import { logOut } from '../service/apiAuth'
 import AuthButtons from './AuthButtons'
 
 const ProfileMenu = ({ onClose, profileRef }) => {
@@ -38,7 +38,7 @@ const ProfileMenu = ({ onClose, profileRef }) => {
       {isLoggedIn && (
         <Link
           to={``}
-          className="flex gap-4 items-center p-3 pl-0 hover:bg-gray-100 rounded-lg transition -mx-3"
+          className="flex items-center p-3 pl-0 hover:bg-gray-100 rounded-lg transition -mx-3"
           onClick={onClose}
         >
           <div className="relative px-3">

@@ -4,16 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    #121212,
-    #121212,
-    #26141e,
-    #2a0527,
-    #460440
-  );
+body {
+  @apply h-screen light-mode dark:dark-mode transition-colors duration-200;
   font-family: 'Montserrat', sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -32,15 +24,22 @@ h6 {
   font-style: normal;
 }
 
-.main-bg {
-  background: linear-gradient(
-    to bottom,
-    #121212,
-    #121212,
-    #26141e,
-    #2a0527,
-    #460440
-  );
+@layer utilities {
+  .dark-mode {
+    background: linear-gradient(
+      to bottom,
+      #121212,
+      #121212,
+      #26141e,
+      #2a0527,
+      #460440
+    );
+    color: #ffffff;
+  }
+
+  .light-mode {
+    color: #131313;
+  }
 }
 
 .spinner {

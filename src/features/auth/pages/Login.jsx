@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
-import { FaRegUser } from 'react-icons/fa'
 import { MdAlternateEmail, MdOutlineLockOpen } from 'react-icons/md'
 
 import InputField from '../components/InputField'
@@ -10,7 +9,7 @@ import SpinnerMini from '../../../components/SpinnerMini'
 import SubmitionButton from '../../../components/SubmitionButton'
 import AuthHeader from '../components/AuthHeader'
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../../api/apiAuth'
+import { login } from '../service/apiAuth'
 import { Link, useNavigate } from 'react-router-dom'
 
 const LoginSchema = Yup.object().shape({

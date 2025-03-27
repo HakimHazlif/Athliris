@@ -10,7 +10,7 @@ import SpinnerMini from '../../../components/SpinnerMini'
 import SubmitionButton from '../../../components/SubmitionButton'
 import AuthHeader from '../components/AuthHeader'
 import { useDispatch, useSelector } from 'react-redux'
-import { signup } from '../../../api/apiAuth'
+import { signup } from '../service/apiAuth'
 import { useNavigate } from 'react-router-dom'
 
 const SignupSchema = Yup.object().shape({

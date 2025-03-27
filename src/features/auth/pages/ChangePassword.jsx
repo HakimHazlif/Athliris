@@ -7,7 +7,7 @@ import SubmitionButton from '../../../components/SubmitionButton'
 import SpinnerMini from '../../../components/SpinnerMini'
 import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { resetPassword } from '../../../api/apiAuth'
+import { resetPassword } from '../service/apiAuth'
 
 const SendResetSchema = Yup.object().shape({
   password: Yup.string()

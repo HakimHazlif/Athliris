@@ -5,7 +5,7 @@ import {
   resetPassword,
   sendResetEmail,
   signup,
-} from '../../api/apiAuth'
+} from '../../features/auth/service/apiAuth'
 import toast from 'react-hot-toast'
 
 const initialState = {

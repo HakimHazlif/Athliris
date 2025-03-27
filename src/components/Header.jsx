@@ -10,6 +10,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../api/firebase'
 import { setUser, setUserFailure } from '../app/slices/authSlice'
 import ProfileMenu from '../features/auth/components/ProfileMenu'
+import ThemeToggle from './ThemeToggle'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -46,7 +47,7 @@ const Header = () => {
   }, [dispatch])
 
   return (
-    <header className="text-white shadow-md ">
+    <header className="shadow-md ">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="w-32">
@@ -55,14 +56,17 @@ const Header = () => {
 
           <Navbar />
 
-          <div className="hidden md:inline-block">
-            {isLoggedIn ? (
-              <UserProfile />
-            ) : (
-              <div className="w-56">
-                <AuthButtons />
-              </div>
-            )}
+          <div className="flex items-center gap-8">
+            <div className="hidden md:inline-block">
+              {isLoggedIn ? (
+                <UserProfile />
+              ) : (
+                <div className="w-56">
+                  <AuthButtons />
+                </div>
+              )}
+            </div>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
