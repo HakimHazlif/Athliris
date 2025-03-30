@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { validateUserData } from '../../features/Survey/service/apiUserData'
+import { validateUserData } from '../../features/survey/service/apiUserData'
 
 const initialState = {
   user: {

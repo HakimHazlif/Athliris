@@ -11,7 +11,7 @@ import ChangePassword from './features/auth/pages/ChangePassword'
 import SendResetEmail from './features/auth/pages/SendResetEmail'
 import { Toaster } from 'react-hot-toast'
 import ThemeContextProvider from './context/ThemeContext'
-import Survey from './features/Survey/pages/Survey'
+import Survey from './features/survey/pages/Survey'
 import PolicyPage from './pages/PolicyPage'
 
 const queryClient = new QueryClient()
