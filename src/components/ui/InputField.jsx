@@ -1,34 +1,41 @@
-import { ErrorMessage, Field } from 'formik'
+import { ErrorMessage, Field, useFormikContext } from 'formik'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 
 const InputField = ({
   id,
   label,
-  icon,
+  icon = null,
   type,
   placeholder,
-  error,
-  touched,
   forPassword = false,
   showPassword = null,
   setShowPassword = null,
 }) => {
+  const { errors, touched } = useFormikContext()
+
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+      <label
+        htmlFor={id}
+        className="block text-sm font-medium text-grayish-700 dark:text-grayish-300"
+      >
         {label}
       </label>
       <div className="mt-1 relative rounded-md shadow-sm">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          {icon}
-        </div>
+        {icon && (
+          <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+            {icon}
+          </div>
+        )}
         <Field
           type={type}
           name={id}
           id={id}
-          className={`block w-full pl-10 pr-3 py-2 border ${
-            error && touched ? 'border-red-300' : 'border-gray-300'
-          } rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
+          className={`block w-full ${icon ? 'pl-10' : 'pl-3'} pr-3 py-2 border text-black dark:text-white dark:bg-grayish-500 ${
+            errors[id] && touched[id]
+              ? 'border-red-500'
+              : 'border-gray-300 dark:border-grayish-700'
+          } rounded-md focus:outline-none focus:ring-neon-500 focus:border-neon-500 sm:text-sm`}
           placeholder={placeholder}
         />
         {forPassword && (

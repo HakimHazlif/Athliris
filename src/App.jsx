@@ -11,6 +11,8 @@ import ChangePassword from './features/auth/pages/ChangePassword'
 import SendResetEmail from './features/auth/pages/SendResetEmail'
 import { Toaster } from 'react-hot-toast'
 import ThemeContextProvider from './context/ThemeContext'
+import Survey from './features/Survey/pages/Survey'
+import PolicyPage from './pages/PolicyPage'
 
 const queryClient = new QueryClient()
 
@@ -29,6 +31,15 @@ function App() {
               <Route index element={<SendResetEmail />} />
               <Route path="change" element={<ChangePassword />} />
             </Route>
+            <Route path="health-fitness-survey" element={<Survey />} />
+            <Route
+              path="terms-of-service"
+              element={<PolicyPage document="termsOfService" />}
+            />
+            <Route
+              path="privacy-policy"
+              element={<PolicyPage document="privacyPolicy" />}
+            />
           </Routes>
           <Toaster
             position="top-center"

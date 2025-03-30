@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
 import { FaRegUser } from 'react-icons/fa'
 import { MdAlternateEmail, MdOutlineLockOpen } from 'react-icons/md'
 
-import InputField from '../components/InputField'
-import SpinnerMini from '../../../components/SpinnerMini'
+import InputField from '../../../components/ui/InputField'
+import SpinnerMini from '../../../components/ui/SpinnerMini'
 import SubmitionButton from '../../../components/SubmitionButton'
 import AuthHeader from '../components/AuthHeader'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,16 +38,14 @@ const SignupSchema = Yup.object().shape({
 const Signup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { status, user, isLoggedIn } = useSelector((state) => state.userAuth)
+  const { status } = useSelector((state) => state.userAuth)
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  console.log(user)
-
-  useEffect(() => {
-    if (isLoggedIn) navigate('/', { replace: true })
-  }, [isLoggedIn, navigate])
+  // useEffect(() => {
+  //   if (isLoggedIn) navigate('/', { replace: true })
+  // }, [isLoggedIn, navigate])
 
   return (
     <div className="min-h-screen main-bg flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -64,7 +62,7 @@ const Signup = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting }) => {
-              dispatch(signup(values))
+              dispatch(signup(values, { extra: { navigate } }))
               setSubmitting(false)
             }}
           >

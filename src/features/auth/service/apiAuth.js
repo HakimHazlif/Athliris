@@ -12,7 +12,7 @@ import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 
 export const signup = createAsyncThunk(
   'user/signup',
-  async (userData, { rejectWithValue }) => {
+  async (userData, { rejectWithValue, extra }) => {
     try {
       const { firstName, lastName, email, password } = userData
       const userCredential = await createUserWithEmailAndPassword(
@@ -35,6 +35,8 @@ export const signup = createAsyncThunk(
         createdAt: serverTimestamp(),
         lastSignin: serverTimestamp(),
       })
+
+      extra.navigate('/health-fitness-survey')
 
       return {
         uid: user.uid,

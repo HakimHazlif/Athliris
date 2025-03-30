@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-  @apply h-screen light-mode dark:dark-mode transition-colors duration-200;
+  @apply light-mode dark:dark-mode transition-colors duration-200;
   font-family: 'Montserrat', sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
