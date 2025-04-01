@@ -1,13 +1,15 @@
 import * as Yup from 'yup'
 
-export const confirmationSchema = Yup.object({
-  termsOfService: Yup.boolean()
+const ConfirmationSchema = Yup.object().shape({
+  termsOfServiceAgreement: Yup.boolean()
     .required('You must accept the Terms of Service')
     .oneOf([true], 'You must accept the Terms of Service'),
-  privacyPolicy: Yup.boolean()
+  privacyPolicyAgreement: Yup.boolean()
     .required('You must accept the Privacy Policy')
     .oneOf([true], 'You must accept the Privacy Policy'),
-  dataConsent: Yup.boolean()
+  dataConsentAgreement: Yup.boolean()
     .required('You must provide consent for data collection')
     .oneOf([true], 'You must provide consent for data collection'),
 })
+
+export default ConfirmationSchema

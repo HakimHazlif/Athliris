@@ -1,5 +1,5 @@
 import { Form, Formik } from 'formik'
-import { technologyTrackingSchema } from '../schemas/technologyTrackingSchema'
+import TechnologyTrackingSchema from '../schemas/technologyTrackingSchema'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getNextStage,
@@ -7,17 +7,17 @@ import {
   setTechnologyTracking,
 } from '../../../app/slices/userDataSlice'
 import FormActions from '../components/FormActions'
-import CheckboxInput from '../../../components/ui/CheckboxInput'
+import CheckboxGroup from '../../../components/ui/CheckboxGroup'
 import { fitnessDeviceOptions, notificationOptions } from '../utils/constant'
 
 const SeventhStage = () => {
   const dispatch = useDispatch()
-  const userData = useSelector(healthFitnessUser)
+  const { technologyTracking } = useSelector(healthFitnessUser)
 
   return (
     <Formik
-      initialValues={userData.technologyTracking}
-      validationSchema={technologyTrackingSchema}
+      initialValues={technologyTracking}
+      validationSchema={TechnologyTrackingSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log('start')
         dispatch(setTechnologyTracking(values))
@@ -28,20 +28,20 @@ const SeventhStage = () => {
       {() => {
         return (
           <Form className="space-y-6">
-            <CheckboxInput
+            <CheckboxGroup
               label="Existing Fitness Devices"
               id="fitnessDevices"
               options={fitnessDeviceOptions}
             />
 
-            <CheckboxInput
+            <CheckboxGroup
               label="Preferred Notification Types"
               id="notificationTypes"
               options={notificationOptions}
             />
 
             <div className="mt-4 p-4 rounded-md">
-              <h4 className="text-sm font-medium text-gray-500 dark:text-gray-200 mb-2">
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Note:
               </h4>
               <p className="text-sm text-gray-600 dark:text-gray-400">

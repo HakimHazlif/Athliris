@@ -5,8 +5,8 @@ import {
   setFitnessLevel,
 } from '../../../app/slices/userDataSlice'
 import { Form, Formik } from 'formik'
-import { fitnessLevelSchema } from '../schemas/fitnessLevelSchema'
-import RadioboxInput from '../../../components/ui/RadioboxInput'
+import FitnessLevelSchema from '../schemas/fitnessLevelSchema'
+import RadioboxInput from '../../../components/ui/RadioBoxGroup'
 import {
   durationOptions,
   exerciseTypes,
@@ -15,18 +15,17 @@ import {
 } from '../utils/constant'
 import FormActions from '../components/FormActions'
 import SelectInput from '../../../components/ui/SelectInput'
-import CheckboxInput from '../../../components/ui/CheckboxInput'
+import CheckboxInput from '../../../components/ui/CheckboxGroup'
 import InputField from '../../../components/ui/InputField'
 
 const FifthStage = () => {
   const dispatch = useDispatch()
-  const userData = useSelector(healthFitnessUser)
+  const { fitnessLevel } = useSelector(healthFitnessUser)
 
-  console.log(userData)
   return (
     <Formik
-      initialValues={userData.fitnessLevel}
-      validationSchema={fitnessLevelSchema}
+      initialValues={fitnessLevel}
+      validationSchema={FitnessLevelSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log('start')
         dispatch(setFitnessLevel(values))
@@ -63,7 +62,7 @@ const FifthStage = () => {
               options={exerciseTypes}
             />
 
-            {values.exerciseTypes.includes('other') && (
+            {values.exerciseTypes.includes('Other') && (
               <InputField
                 label="Please specify your other exercise type"
                 id="otherExerciseType"

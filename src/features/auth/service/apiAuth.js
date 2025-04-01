@@ -12,7 +12,7 @@ import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 
 export const signup = createAsyncThunk(
   'user/signup',
-  async (userData, { rejectWithValue, extra }) => {
+  async (userData, { rejectWithValue }) => {
     try {
       const { firstName, lastName, email, password } = userData
       const userCredential = await createUserWithEmailAndPassword(
@@ -36,8 +36,6 @@ export const signup = createAsyncThunk(
         lastSignin: serverTimestamp(),
       })
 
-      extra.navigate('/health-fitness-survey')
-
       return {
         uid: user.uid,
         username: `${firstName} ${lastName}`,
@@ -48,11 +46,10 @@ export const signup = createAsyncThunk(
       }
     } catch (err) {
       let errorMessage
-      console.log(err.code)
 
       switch (err.code) {
         case 'auth/email-already-in-use':
-          errorMessage = 'Email is already in use'
+          errorMessage = 'Email is already in used'
           break
         case 'auth/invalid-email':
           errorMessage = 'Invalid email address'

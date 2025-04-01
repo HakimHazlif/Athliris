@@ -4,8 +4,8 @@ import {
   healthFitnessUser,
   setDietaryPreferences,
 } from '../../../app/slices/userDataSlice'
-import { dietaryPreferencesSchema } from '../schemas/dietaryPreferencesSchema'
-import RadioboxInput from '../../../components/ui/RadioboxInput'
+import DietaryPreferencesSchema from '../schemas/dietaryPreferencesSchema'
+import RadioBoxGroup from '../../../components/ui/RadioBoxGroup'
 import {
   dietaryRestrictions,
   dietTypes,
@@ -13,17 +13,18 @@ import {
 } from '../utils/constant'
 import { Form, Formik } from 'formik'
 import InputField from '../../../components/ui/InputField'
-import CheckboxInput from '../../../components/ui/CheckboxInput'
+import CheckboxGroup from '../../../components/ui/CheckboxGroup'
 import FormActions from '../components/FormActions'
+import SelectInput from '../../../components/ui/SelectInput'
 
 const FourthStage = () => {
   const dispatch = useDispatch()
-  const userData = useSelector(healthFitnessUser)
+  const { dietaryPreferences } = useSelector(healthFitnessUser)
 
   return (
     <Formik
-      initialValues={userData.dietaryPreferences}
-      validationSchema={dietaryPreferencesSchema}
+      initialValues={dietaryPreferences}
+      validationSchema={DietaryPreferencesSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log('start')
         dispatch(setDietaryPreferences(values))
@@ -34,13 +35,14 @@ const FourthStage = () => {
       {({ values }) => {
         return (
           <Form className="space-y-6">
-            <RadioboxInput
+            <SelectInput
               label="Current Diet Type"
               id="dietType"
               options={dietTypes}
+              defaultOption="Choose Your Current Diet"
             />
 
-            {values.dietType === 'other' && (
+            {values.dietType === 'Other' && (
               <InputField
                 label="Please specify your diet type"
                 id="otherDietType"
@@ -49,13 +51,13 @@ const FourthStage = () => {
               />
             )}
 
-            <CheckboxInput
+            <CheckboxGroup
               label="Dietary Restrictions/Allergies"
               id="restrictions"
               options={dietaryRestrictions}
             />
 
-            {values.restrictions.includes('other') && (
+            {values?.restrictions.includes('Other') && (
               <InputField
                 label="Please specify your dietary restriction or allergy"
                 id="otherRestriction"
@@ -64,7 +66,7 @@ const FourthStage = () => {
               />
             )}
 
-            <CheckboxInput
+            <CheckboxGroup
               label="Nutritional Tracking Preferences"
               id="trackingPreferences"
               options={trackingPreferences}

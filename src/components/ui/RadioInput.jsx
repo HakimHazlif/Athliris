@@ -11,14 +11,25 @@ const RadioInput = ({ options, id, label }) => {
       </label>
       <div className="flex justify-between">
         {options.map((opt) => (
-          <label className="inline-flex gap-2 items-center relative" key={opt}>
-            <Field type="radio" name={id} value={opt} className="hidden peer" />
-            <div className="w-4 h-4 border-2 border-gray-300 rounded-full flex justify-center items-center"></div>
-            <div className="absolute left-[3px] top-[6.7px] w-[10px] h-[10px] rounded-full bg-transparent peer-checked:bg-neon-500"></div>
-            <span className="mr-2 capitalize text-gray-800 dark:text-grayish-200">
+          <div className="inline-flex gap-2 items-center " key={opt}>
+            <div className="flex items-center justify-center relative w-4 h-4">
+              <Field
+                type="radio"
+                name={id}
+                id={opt}
+                value={opt}
+                className="peer opacity-0 absolute z-20 w-full h-full rounded-full cursor-pointer pointer-events-auto"
+              />
+              <div className="absolute w-full h-full border-2 border-gray-300 peer-checked:border-neon-500 rounded-full flex justify-center items-center z-10"></div>
+              <div className="absolute w-2 h-2 rounded-full bg-transparent peer-checked:bg-neon-500 z-0"></div>
+            </div>
+            <label
+              htmlFor={opt}
+              className="mr-2 capitalize text-gray-800 dark:text-grayish-200 cursor-pointer pointer-events-auto"
+            >
               {opt}
-            </span>
-          </label>
+            </label>
+          </div>
         ))}
       </div>
       <ErrorMessage

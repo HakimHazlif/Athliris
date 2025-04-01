@@ -4,22 +4,22 @@ import {
   healthFitnessUser,
   setAvailableEquipment,
 } from '../../../app/slices/userDataSlice'
-import { availableEquipmentSchema } from '../schemas/availableEquipmentSchema'
+import AvailableEquipmentSchema from '../schemas/availableEquipmentSchema'
 import FormActions from '../components/FormActions'
 import { Form, Formik } from 'formik'
-import RadioboxInput from '../../../components/ui/RadioboxInput'
+import RadioBoxGroup from '../../../components/ui/RadioBoxGroup'
 import { equipmentOptions, locationOptions } from '../utils/constant'
-import CheckboxInput from '../../../components/ui/CheckboxInput'
+import CheckboxGroup from '../../../components/ui/CheckboxGroup'
 import InputField from '../../../components/ui/InputField'
 
 const SixthStage = () => {
   const dispatch = useDispatch()
-  const userData = useSelector(healthFitnessUser)
+  const { availableEquipment } = useSelector(healthFitnessUser)
 
   return (
     <Formik
-      initialValues={userData.fitnessLevel}
-      validationSchema={availableEquipmentSchema}
+      initialValues={availableEquipment}
+      validationSchema={AvailableEquipmentSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log('start')
         dispatch(setAvailableEquipment(values))
@@ -30,20 +30,20 @@ const SixthStage = () => {
       {({ values }) => {
         return (
           <Form className="space-y-6">
-            <RadioboxInput
+            <RadioBoxGroup
               label="Available Exercise Equipment"
               id="availableEquipment"
               options={equipmentOptions}
             />
 
-            <CheckboxInput
+            <CheckboxGroup
               label="Preferred Exercise Locations"
               id="exerciseLocations"
               options={locationOptions}
             />
 
             {values.exerciseLocations &&
-              values.exerciseLocations.includes('other') && (
+              values.exerciseLocations.includes('Other') && (
                 <InputField
                   label="Please specify your other exercise location"
                   id="otherLocation"

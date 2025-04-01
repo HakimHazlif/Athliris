@@ -7,7 +7,6 @@ import {
   signup,
 } from '../../features/auth/service/apiAuth'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
 
 const initialState = {
   user: {

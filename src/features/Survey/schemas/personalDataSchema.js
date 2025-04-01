@@ -2,11 +2,6 @@ import * as Yup from 'yup'
 
 export const getPersonalDataSchema = (unit = 'metric') => {
   return Yup.object().shape({
-    fullName: Yup.string()
-      .required('Full name required')
-      .min(4, 'Name must be more than 4 characters')
-      .max(50, 'Name must be less than 50 characters'),
-
     birthDate: Yup.date()
       .required('Date of birth required')
       .max(new Date(), 'Invalid date of birth')
@@ -49,7 +44,12 @@ export const getPersonalDataSchema = (unit = 'metric') => {
     activityLevel: Yup.string()
       .required('Activity level required')
       .oneOf(
-        ['sedentary', 'lightly-active', 'moderately-active', 'very-active'],
+        [
+          'Sedentary (less than 30 minutes per day)',
+          'Lightly active (30-60 minutes daily)',
+          'Moderately active (60-90 minutes daily)',
+          'Very active (more than 90 minutes daily)',
+        ],
         'Invalid activity level selected'
       ),
   })

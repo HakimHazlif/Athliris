@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { validateUserData } from '../../features/survey/service/apiUserData'
+import { createFitnessProfile } from '../../features/survey/service/apiUserData'
 
 const initialState = {
   user: {
     personalData: {
-      fullName: '',
       birthDate: '',
       gender: '',
       height: '',
@@ -21,10 +20,9 @@ const initialState = {
     },
     fitnessGoals: {
       primaryObjective: '',
-      targetWeight: '',
-      weightUnit: '',
-      desiredWeightChange: '',
-      targetBodyFat: '',
+      targetWeight: '', // kg or lbs
+      desiredWeightChange: '', // kg or lbs
+      targetBodyFat: '', // %
       desiredMuscleIncrease: '',
       shortTermGoals: '',
       longTermGoals: '',
@@ -33,18 +31,9 @@ const initialState = {
     dietaryPreferences: {
       dietType: '',
       otherDietType: '',
-      restrictions: {
-        glutenIntolerance: false,
-        lactoseIntolerance: false,
-        nutAllergies: false,
-        other: false,
-      },
+      restrictions: [],
       otherRestriction: '',
-      trackingPreferences: {
-        macroTracking: false,
-        calorieCountting: false,
-        mealPlanning: false,
-      },
+      trackingPreferences: [],
     },
     fitnessLevel: {
       experienceLevel: '',
@@ -57,14 +46,19 @@ const initialState = {
       availableEquipment: '',
       exerciseLocations: [],
       otherLocation: '',
-      fitnessDevices: [],
     },
     technologyTracking: {
       fitnessDevices: [],
       notificationTypes: [],
     },
+    userAgreements: {
+      termsOfServiceAgreement: true,
+      privacyPolicyAgreement: true,
+      dataConsentAgreement: true,
+    },
+    unit: 'metric',
   },
-  stage: 8,
+  stage: 1,
   error: null,
   status: 'idle',
 }
@@ -92,7 +86,10 @@ const userDataSlice = createSlice({
       state.user.availableEquipment = action.payload
     },
     setTechnologyTracking: (state, action) => {
-      state.user.preferredNotificationTypes = action.payload
+      state.user.technologyTracking = action.payload
+    },
+    setUserAgreements: (state, action) => {
+      state.user.userAgreements = action.payload
     },
     getNextStage: (state) => {
       const stageNum = state.stage
@@ -103,18 +100,43 @@ const userDataSlice = createSlice({
       if (stageNum > 1) state.stage -= 1
     },
     resetUserData: () => initialState,
+    switchUnit: (state) => {
+      if (state.user.unit === 'metric') {
+        state.user.unit = 'imperial'
+        state.user.personalData.height =
+          Number(state.user.personalData.height) * 0.393700787
+        state.user.personalData.weight =
+          Number(state.user.personalData.weight) * 2.20462262
+
+        state.user.fitnessGoals.targetWeight =
+          Number(state.user.fitnessGoals.targetWeight) * 2.20462262
+        state.user.fitnessGoals.desiredWeightChange =
+          Number(state.user.fitnessGoals.desiredWeightChange) * 2.20462262
+      } else {
+        state.user.unit = 'metric'
+        state.user.personalData.height =
+          Number(state.user.personalData.height) * 2.54
+        state.user.personalData.weight =
+          Number(state.user.personalData.weight) * 0.45359237
+
+        state.user.fitnessGoals.targetWeight =
+          Number(state.user.fitnessGoals.targetWeight) * 0.45359237
+        state.user.fitnessGoals.desiredWeightChange =
+          Number(state.user.fitnessGoals.desiredWeightChange) * 0.45359237
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(validateUserData.pending, (state) => {
+      .addCase(createFitnessProfile.pending, (state) => {
         state.error = null
         state.status = 'loading'
       })
-      .addCase(validateUserData.rejected, (state, action) => {
+      .addCase(createFitnessProfile.rejected, (state, action) => {
         state.error = action.payload
         state.status = 'failed'
       })
-      .addCase(validateUserData.fulfilled, (state) => {
+      .addCase(createFitnessProfile.fulfilled, (state) => {
         state.error = null
         state.status = 'succeeded'
       })
@@ -129,9 +151,11 @@ export const {
   setFitnessLevel,
   setAvailableEquipment,
   setTechnologyTracking,
+  setUserAgreements,
   resetUserData,
   getNextStage,
   getStageBack,
+  switchUnit,
 } = userDataSlice.actions
 
 export const healthFitnessUser = (state) => state.userData.user

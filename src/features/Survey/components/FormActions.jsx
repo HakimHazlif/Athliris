@@ -18,7 +18,7 @@ const FormActions = () => {
         <button
           onClick={() => dispatch(getStageBack())}
           disabled={status === 'loading'}
-          className="w-40 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-slate-700 bg-slate-400 hover:bg-slate-500 duration-200"
+          className="w-40 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-slate-700 bg-slate-400 hover:bg-slate-500 duration-200 cursor-pointer pointer-events-auto"
         >
           Back
         </button>

@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux'
+import { user } from '../../../app/slices/authSlice'
 
 const StageDescription = () => {
   const { stage } = useSelector((state) => state.userData)
+  const { username } = useSelector(user)
 
   let text
 
@@ -9,7 +11,8 @@ const StageDescription = () => {
     case 1:
       text = (
         <p>
-          The first step in your journey towards{' '}
+          Welcome, <span className="font-oswald text-neon-600">{username}</span>
+          ! The first step in your journey towards{' '}
           <span className="text-neon-600">fitness and health</span>. Please fill
           out the following information accurately.
         </p>
@@ -42,20 +45,17 @@ const StageDescription = () => {
     case 5:
       text = (
         <p>
-          Evaluate your current{' '}
-          <span className="text-neon-600">physical condition</span> and exercise
-          experience to create a tailored approach.
+          Evaluate your current physical condition and exercise experience to
+          create a <span className="text-neon-600">tailored approach</span>.
         </p>
       )
       break
     case 6:
       text = (
         <p>
-          Identify your available{' '}
-          <span className="text-neon-600">
-            resources and potential training
-          </span>{' '}
-          locations to optimize your fitness journey.
+          Identify your available resources and potential{' '}
+          <span className="text-neon-600">training locations</span> to optimize
+          your fitness journey.
         </p>
       )
       break

@@ -1,30 +1,26 @@
 import * as Yup from 'yup'
 
-export const dietaryPreferencesSchema = Yup.object({
+const DietaryPreferencesSchema = Yup.object({
   dietType: Yup.string().required('Please select your current diet type'),
   otherDietType: Yup.string().when('dietType', {
-    is: 'other',
-    then: Yup.string().required('Please specify your diet type'),
+    is: 'Other',
+    then: () => Yup.string().required('Please specify your diet type'),
+    otherwise: () => Yup.string().notRequired(),
   }),
-  restrictions: Yup.object().test(
-    'at-least-one-restriction',
-    'Please select at least one option or select "None"',
-    function (value) {
-      // If "None" is selected, or at least one restriction is true
-      if (!value) return false
-      return Object.values(value).some((v) => v === true)
-    }
+  restrictions: Yup.array().min(
+    1,
+    'Please select at least one option or "None"'
   ),
-  otherRestriction: Yup.string().when('restrictions.other', {
-    is: true,
-    then: Yup.string().required('Please specify your dietary restriction'),
+  otherRestriction: Yup.string().when('restrictions', {
+    is: (val) => val && val.includes('Other'),
+    then: () =>
+      Yup.string().required('Please specify your other medical condition'),
+    otherwise: () => Yup.string().notRequired(),
   }),
-  trackingPreferences: Yup.object().test(
-    'at-least-one-preference',
-    'Please select at least one tracking preference',
-    function (value) {
-      if (!value) return false
-      return Object.values(value).some((v) => v === true)
-    }
+  trackingPreferences: Yup.array().min(
+    1,
+    'Please select at least one tracking preference'
   ),
 })
+
+export default DietaryPreferencesSchema

@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 
-export const MedicalHistorySchema = Yup.object().shape({
+const MedicalHistorySchema = Yup.object().shape({
   conditions: Yup.array().min(1, 'Please select at least one option or "None"'),
   otherCondition: Yup.string().when('medicalConditions', {
     is: (medicalConditions) =>
@@ -12,3 +12,5 @@ export const MedicalHistorySchema = Yup.object().shape({
   medications: Yup.string(),
   allergies: Yup.string(),
 })
+
+export default MedicalHistorySchema

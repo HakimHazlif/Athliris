@@ -14,14 +14,16 @@ const PersonalDataForm = () => {
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-lg">
       <div className="bg-white dark:bg-grayish-700 py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        {/* {stage === 1 && <FirstStage />}
+        {stage === 1 && <FirstStage />}
         {stage === 2 && <SecondStage />}
         {stage === 3 && <ThirdStage />}
         {stage === 4 && <FourthStage />}
         {stage === 5 && <FifthStage />}
         {stage === 6 && <SixthStage />}
-        {stage === 7 && <SeventhStage />} */}
-        <ConfirmationForm />
+        {stage === 7 && <SeventhStage />}
+        {stage === 8 && <ConfirmationForm />}
+
+        {/* <ConfirmationForm /> */}
       </div>
     </div>
   )

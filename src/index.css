@@ -24,6 +24,10 @@ h6 {
   font-style: normal;
 }
 
+button {
+  cursor: pointer;
+}
+
 @layer utilities {
   .dark-mode {
     background: linear-gradient(

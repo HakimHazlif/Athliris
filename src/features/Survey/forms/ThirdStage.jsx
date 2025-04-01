@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { fitnessGoalsSchema } from '../schemas/fitnessGoalsSchema'
+import FitnessGoalsSchema from '../schemas/fitnessGoalsSchema'
 import {
   getNextStage,
   healthFitnessUser,
@@ -8,24 +8,20 @@ import {
 import { Form, Formik } from 'formik'
 import { fieldIconStyle, fitnessObjectives } from '../utils/constant'
 import InputField from '../../../components/ui/InputField'
-import { useState } from 'react'
-import RadioboxInput from '../../../components/ui/RadioboxInput'
 import FormActions from '../components/FormActions'
 import SwitchUnit from '../../../components/ui/SwitchUnit'
+import RadioBoxGroup from '../../../components/ui/RadioBoxGroup'
 
 const ThirdStage = () => {
   const dispatch = useDispatch()
-  const userData = useSelector(healthFitnessUser)
-  const [unit, setUnit] = useState('metric')
+  const { fitnessGoals, unit } = useSelector(healthFitnessUser)
 
   const icon = unit === 'metric' ? 'kg' : 'lbs'
 
-  console.log(userData)
-
   return (
     <Formik
-      initialValues={userData.fitnessGoals}
-      validationSchema={fitnessGoalsSchema}
+      initialValues={fitnessGoals}
+      validationSchema={FitnessGoalsSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log('start')
         dispatch(setFitnessGoals(values))
@@ -36,7 +32,7 @@ const ThirdStage = () => {
       {({ values }) => {
         return (
           <Form className="space-y-6">
-            <RadioboxInput
+            <RadioBoxGroup
               id="primaryObjective"
               label="Primary Fitness Objective"
               options={fitnessObjectives}
@@ -45,11 +41,11 @@ const ThirdStage = () => {
             <div className="pt-3 flex justify-between items-center">
               <h3 className="">Specific Numerical Goals</h3>
 
-              <SwitchUnit label="Weight Unite" unit={unit} setUnit={setUnit} />
+              <SwitchUnit label="Weight Unite" />
             </div>
 
-            {(values.primaryObjective === 'weightLoss' ||
-              values.primaryObjective === 'muscleGain') && (
+            {(values.primaryObjective === 'Weight Loss' ||
+              values.primaryObjective === 'Muscle Gain') && (
               <InputField
                 label="Target Weight"
                 id="targetWeight"
@@ -61,11 +57,11 @@ const ThirdStage = () => {
               />
             )}
 
-            {(values.primaryObjective === 'weightLoss' ||
-              values.primaryObjective === 'muscleGain') && (
+            {(values.primaryObjective === 'Weight Loss' ||
+              values.primaryObjective === 'Muscle Gain') && (
               <InputField
                 label={
-                  values.primaryObjective === 'weightLoss'
+                  values.primaryObjective === 'Weight Loss'
                     ? 'Desired Weight Loss'
                     : 'Desired Weight Gain'
                 }
@@ -86,7 +82,7 @@ const ThirdStage = () => {
               placeholder="Your Target Fat..."
             />
 
-            {values.primaryObjective === 'muscleGain' && (
+            {values.primaryObjective === 'Muscle Gain' && (
               <InputField
                 label="Desired Muscle Mass Increase"
                 id="desiredMuscleIncrease"

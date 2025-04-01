@@ -1,19 +1,31 @@
 import { Form, Formik } from 'formik'
-import { confirmationSchema } from '../schemas/confirmationSchema'
+import ConfirmationSchema from '../schemas/confirmationSchema'
 import FormActions from '../components/FormActions'
 
 import CheckboxInputMini from '../../../components/ui/CheckboxInputMini'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  healthFitnessUser,
+  setUserAgreements,
+} from '../../../app/slices/userDataSlice'
+import { createFitnessProfile } from '../service/apiUserData'
+import { user } from '../../../app/slices/authSlice'
 
 const ConfirmationForm = () => {
+  const dispatch = useDispatch()
+  const userData = useSelector(healthFitnessUser)
+  const { uid } = useSelector(user)
+
+  // console.log(userData)
+
   return (
     <Formik
-      initialValues={{
-        termsOfService: false,
-        privacyPolicy: false,
-        dataConsent: false,
-      }}
-      validationSchema={confirmationSchema}
+      initialValues={userData.userAgreements}
+      validationSchema={ConfirmationSchema}
       onSubmit={(values, { setSubmitting }) => {
+        console.log('start')
+        dispatch(setUserAgreements(values))
+        dispatch(createFitnessProfile({ userId: uid, surveyData: userData }))
         setSubmitting(false)
       }}
     >
@@ -21,7 +33,7 @@ const ConfirmationForm = () => {
         return (
           <Form className="space-y-4">
             <CheckboxInputMini
-              id="termsOfService"
+              id="termsOfServiceAgreement"
               label={
                 <span>
                   I agree to the{' '}
@@ -37,7 +49,7 @@ const ConfirmationForm = () => {
             />
 
             <CheckboxInputMini
-              id="privacyPolicy"
+              id="privacyPolicyAgreement"
               label={
                 <span>
                   I agree to the{' '}
@@ -53,7 +65,7 @@ const ConfirmationForm = () => {
             />
 
             <CheckboxInputMini
-              id="dataConsent"
+              id="dataConsentAgreement"
               label="I consent to the collection, processing, and storage of my fitness data for the purpose of providing personalized fitness recommendations."
             />
 

@@ -74,6 +74,31 @@ export const medicalConditions = [
   },
 ]
 
+export const medicalHistories = [
+  {
+    id: 'physicalLimitations',
+    label: 'Physical Limitations',
+    placeholder: 'Describe any physical limitations you have',
+  },
+  {
+    id: 'injuries',
+    label: 'Past Sports or Exercise-Related Injuries',
+    placeholder:
+      'Describe any past injuries that might affect your exercise routine',
+  },
+  {
+    id: 'medications',
+    label: 'Current Medications Affecting Physical Activity',
+    placeholder: 'ist any medications that might affect your exercise routine',
+  },
+  {
+    id: 'allergies',
+    label: 'Allergies & Special Health Considerations',
+    placeholder:
+      'List any allergies or other health considerations we should know about',
+  },
+]
+
 export const fitnessObjectives = [
   { id: 'weightLoss', label: 'Weight Loss', icon: null },
   { id: 'muscleGain', label: 'Muscle Gain', icon: null },
@@ -94,14 +119,15 @@ export const dietTypes = [
   { id: 'keto', label: 'Keto', icon: null },
   { id: 'paleo', label: 'Paleo', icon: null },
   { id: 'mediterranean', label: 'Mediterranean', icon: null },
-  { id: 'other', label: 'Other', icon: null },
+  { id: 'other-dietTypes', label: 'Other', icon: null },
 ]
 
 export const dietaryRestrictions = [
   { id: 'glutenIntolerance', label: 'Gluten Intolerance', icon: null },
   { id: 'lactoseIntolerance', label: 'Lactose Intolerance', icon: null },
   { id: 'nutAllergies', label: 'Nut Allergies', icon: null },
-  { id: 'other', label: 'Other', icon: null },
+  { id: 'other-restrictions', label: 'Other', icon: null },
+  { id: 'none', label: 'None', icon: null },
 ]
 
 export const trackingPreferences = [

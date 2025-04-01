@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { MedicalHistorySchema } from '../schemas/medicalHistorySchema'
-import { medicalConditions } from '../utils/constant'
-import CheckboxInput from '../../../components/ui/CheckboxInput'
+import MedicalHistorySchema from '../schemas/medicalHistorySchema'
+import { medicalConditions, medicalHistories } from '../utils/constant'
+import CheckboxGroup from '../../../components/ui/CheckboxGroup'
 import InputField from '../../../components/ui/InputField'
 import TextareaInput from '../../../components/ui/TextareaInput'
 import FormActions from '../components/FormActions'
@@ -15,12 +15,11 @@ import {
 const SecondStage = () => {
   const dispatch = useDispatch()
   // const { stage } = useSelector((state) => state.userData)
-  const userData = useSelector(healthFitnessUser)
+  const { medicalHistory } = useSelector(healthFitnessUser)
 
-  console.log(userData)
   return (
     <Formik
-      initialValues={userData.medicalHistory}
+      initialValues={medicalHistory}
       validationSchema={MedicalHistorySchema}
       onSubmit={(values, { setSubmitting }) => {
         dispatch(setMedicalHistory(values))
@@ -31,13 +30,13 @@ const SecondStage = () => {
       {({ values }) => {
         return (
           <Form className="space-y-6">
-            <CheckboxInput
+            <CheckboxGroup
               id="conditions"
               label="Medical Conditions"
               options={medicalConditions}
             />
 
-            {values?.conditions?.includes('other') && (
+            {values?.conditions?.includes('Other') && (
               <InputField
                 id="otherCondition"
                 label="Please specify your other medical condition"
@@ -52,26 +51,14 @@ const SecondStage = () => {
               </span>
             </div>
 
-            <TextareaInput
-              id="physicalLimitations"
-              label="Physical Limitations"
-              placeholder="Describe any physical limitations you have"
-            />
-            <TextareaInput
-              id="injuries"
-              label="Past Sports or Exercise-Related Injuries"
-              placeholder="Describe any past injuries that might affect your exercise routine"
-            />
-            <TextareaInput
-              id="medications"
-              label="Current Medications Affecting Physical Activity"
-              placeholder="List any medications that might affect your exercise routine"
-            />
-            <TextareaInput
-              id="allergies"
-              label="Allergies & Special Health Considerations"
-              placeholder="List any allergies or other health considerations we should know about"
-            />
+            {medicalHistories.map((el) => (
+              <TextareaInput
+                key={el.id}
+                id={el.id}
+                label={el.label}
+                placeholder={el.placeholder}
+              />
+            ))}
 
             <FormActions />
           </Form>

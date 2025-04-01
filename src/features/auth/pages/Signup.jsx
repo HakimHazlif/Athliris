@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import * as Yup from 'yup'
 import { Form, Formik } from 'formik'
@@ -38,20 +38,20 @@ const SignupSchema = Yup.object().shape({
 const Signup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { status } = useSelector((state) => state.userAuth)
+  const { isLoggedIn } = useSelector((state) => state.userAuth)
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  // useEffect(() => {
-  //   if (isLoggedIn) navigate('/', { replace: true })
-  // }, [isLoggedIn, navigate])
+  useEffect(() => {
+    if (isLoggedIn) navigate('/health-fitness-survey', { replace: true })
+  }, [isLoggedIn, navigate])
 
   return (
     <div className="min-h-screen main-bg flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <AuthHeader isLogin={false} />
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white dark:bg-grayish-700 py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <Formik
             initialValues={{
               firstName: '',
@@ -62,7 +62,7 @@ const Signup = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values, { setSubmitting }) => {
-              dispatch(signup(values, { extra: { navigate } }))
+              dispatch(signup(values))
               setSubmitting(false)
             }}
           >

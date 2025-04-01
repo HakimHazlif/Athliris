@@ -23,7 +23,11 @@ const SelectInput = ({ id, label, options, defaultOption }) => {
       >
         <option value="">{defaultOption}</option>
         {options.map((option) => (
-          <option key={option.id} value={option.value}>
+          <option
+            key={option.id}
+            value={option.label}
+            className="pointer-events-auto cursor-pointer"
+          >
             {option.label}
           </option>
         ))}

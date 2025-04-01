@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { activityLevels, fieldIconStyle } from '../utils/constant'
 import { getPersonalDataSchema } from '../schemas/personalDataSchema'
@@ -8,7 +7,6 @@ import RadioInput from '../../../components/ui/RadioInput'
 import SelectInput from '../../../components/ui/SelectInput'
 
 import { LiaBirthdayCakeSolid } from 'react-icons/lia'
-import { FaRegUser } from 'react-icons/fa'
 import FormActions from '../components/FormActions'
 import {
   getNextStage,
@@ -20,14 +18,14 @@ import SwitchUnit from '../../../components/ui/SwitchUnit'
 const FirstStage = () => {
   const dispatch = useDispatch()
   // const { stage } = useSelector((state) => state.userData)
-  const userData = useSelector(healthFitnessUser)
-  const [unit, setUnit] = useState('metric')
+  const { personalData, unit } = useSelector(healthFitnessUser)
 
-  // console.log(userData, stage)
+  const heightUnit = unit === 'metric' ? 'cm' : 'in'
+  const weightUnit = unit === 'metric' ? 'kg' : 'lbs'
 
   return (
     <Formik
-      initialValues={userData.personalData}
+      initialValues={personalData}
       validationSchema={getPersonalDataSchema(unit)}
       onSubmit={(values, { setSubmitting }) => {
         console.log('start')
@@ -39,15 +37,6 @@ const FirstStage = () => {
       {({ errors, touched }) => {
         return (
           <Form className="space-y-6">
-            <InputField
-              id="fullName"
-              label="Full Name"
-              icon={<FaRegUser className={fieldIconStyle} />}
-              type="text"
-              placeholder="Your Full Name..."
-              error={errors.fullName}
-              touched={touched.fullName}
-            />
             <InputField
               id="birthDate"
               label="Date of Birth"
@@ -65,7 +54,7 @@ const FirstStage = () => {
             />
 
             <div className="space-y-2">
-              <SwitchUnit label="Measurements" unit={unit} setUnit={setUnit} />
+              <SwitchUnit label="Measurements" />
 
               <div className="flex gap-2">
                 <InputField
@@ -73,7 +62,7 @@ const FirstStage = () => {
                   label="Height"
                   icon={
                     <div className={`${fieldIconStyle} font-extrabold`}>
-                      {unit === 'metric' ? 'cm' : 'in'}
+                      {heightUnit}
                     </div>
                   }
                   type="number"
@@ -86,7 +75,7 @@ const FirstStage = () => {
                   label="Weight"
                   icon={
                     <div className={`${fieldIconStyle} font-extrabold`}>
-                      {unit === 'metric' ? 'kg' : 'lbs'}
+                      {weightUnit}
                     </div>
                   }
                   type="number"
