@@ -35,21 +35,21 @@ const UserPanel = () => {
           <div className="flex justify-between items-center">
             <BodyStat
               unit={unit === 'metric' ? 'kg' : 'lbs'}
-              stat={personalData.weight || 72}
+              stat={personalData.weight}
               label="Weight"
             />
             <BodyStat
               unit={unit === 'metric' ? 'm' : 'ft'}
               stat={
                 unit === 'metric'
-                  ? Number(personalData.height) / 100 || 1.82
-                  : Number(personalData.height) / 12 || 6.2
+                  ? Number(personalData.height) / 100
+                  : Number(personalData.height) / 12
               }
               label="Height"
             />
             <BodyStat
               unit="yrs"
-              stat={calculateAge(personalData.birthDate || '11-11-1993')}
+              stat={calculateAge(personalData.birthDate || null)}
               label="Age"
             />
           </div>

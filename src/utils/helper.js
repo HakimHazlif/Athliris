@@ -1,5 +1,5 @@
 export function calculateAge(birthdate) {
-  // if (!birthDate) return null
+  if (!birthdate) return null
 
   const birthDate = new Date(birthdate)
   const today = new Date()

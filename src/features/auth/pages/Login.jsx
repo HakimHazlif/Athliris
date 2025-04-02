@@ -11,6 +11,7 @@ import AuthHeader from '../components/AuthHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../service/apiAuth'
 import { Link, useNavigate } from 'react-router-dom'
+import { user } from '../../../app/slices/authSlice'
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -22,15 +23,15 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { status, user, isLoggedIn } = useSelector((state) => state.userAuth)
+  const { status, isLoggedIn } = useSelector((state) => state.userAuth)
+  const { username } = useSelector(user)
 
   const [showPassword, setShowPassword] = useState(false)
 
-  console.log(user)
-
   useEffect(() => {
-    if (isLoggedIn) navigate('/', { replace: true })
-  }, [isLoggedIn, navigate])
+    if (isLoggedIn)
+      navigate(`/user/${username.replace(' ', '-')}`, { replace: true })
+  }, [isLoggedIn, navigate, username])
 
   return (
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 main-bg">
@@ -43,12 +44,17 @@ const Login = () => {
               password: '',
             }}
             validationSchema={LoginSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              dispatch(login(values))
-              setSubmitting(false)
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                await dispatch(login(values))
+              } catch (error) {
+                throw new Error(error)
+              } finally {
+                setSubmitting(false)
+              }
             }}
           >
-            {({ isSubmitting, errors, touched }) => (
+            {({ isSubmitting }) => (
               <Form className="space-y-6">
                 <InputField
                   id="email"
@@ -56,8 +62,6 @@ const Login = () => {
                   icon={<MdAlternateEmail className="h-5 w-5 text-gray-400" />}
                   type="email"
                   placeholder="Your Email..."
-                  error={errors.email}
-                  touched={touched.email}
                 />
                 <InputField
                   id="password"
@@ -65,8 +69,6 @@ const Login = () => {
                   icon={<MdOutlineLockOpen className="h-5 w-5 text-gray-400" />}
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Your Password..."
-                  error={errors.password}
-                  touched={touched.password}
                   forPassword={true}
                   showPassword={showPassword}
                   setShowPassword={setShowPassword}
