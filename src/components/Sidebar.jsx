@@ -10,8 +10,10 @@ import { TbBarbellFilled } from 'react-icons/tb'
 const Sidebar = () => {
   const { username } = useSelector(user)
 
+  const modifiedUsername = username.replace(' ', '-')
+
   return (
-    <aside className="w-48 bg-white dark:bg-grayish-500 h-screen transition-all duration-300 flex flex-col fixed shadow-xl">
+    <aside className="w-48 bg-white dark:bg-grayish-500 h-screen transition-all duration-300 flex flex-col shadow-xl">
       <div className="pl-10 flex-1">
         <div className="w-1/2 pt-7 pb-10">
           <Logo />
@@ -21,22 +23,22 @@ const Sidebar = () => {
           <ul className="">
             <NavItem to="/" icon={<IoHomeSharp size={18} />} text="Home" />
             <NavItem
-              to={`/user/${username}/workouts`}
+              to={`/user/${modifiedUsername}/workouts`}
               icon={<TbBarbellFilled size={18} />}
               text="Workouts"
             />
             <NavItem
-              to={`/user/${username}/nutrition`}
+              to={`/user/${modifiedUsername}/nutrition`}
               icon={<FaAppleAlt size={18} />}
               text="Nutrition"
             />
             <NavItem
-              to={`/user/${username}/progress`}
+              to={`/user/${modifiedUsername}/progress`}
               icon={<RiBarChartFill size={18} />}
               text="Progress"
             />
             <NavItem
-              to={`/user/${username}/settings`}
+              to={`/user/${modifiedUsername}/settings`}
               icon={<IoSettingsSharp size={18} />}
               text="Settings"
             />

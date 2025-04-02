@@ -16,3 +16,11 @@ export function calculateAge(birthdate) {
 
   return age
 }
+
+export const getPathSegment = () => {
+  const path = window.location.pathname
+  const segments = path.split('/')
+  const lastSegment = segments[segments.length - 1]
+  console.log(lastSegment)
+  return lastSegment
+}

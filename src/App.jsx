@@ -14,6 +14,10 @@ import ThemeContextProvider from './context/ThemeContext'
 import Survey from './features/survey/pages/Survey'
 import PolicyPage from './pages/PolicyPage'
 import Dashboard from './pages/Dashboard'
+import Progress from './pages/Progress'
+import Workouts from './pages/Workouts'
+import Nutrition from './pages/Nutrition'
+import Settings from './pages/Settings'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const queryClient = new QueryClient()
@@ -42,7 +46,12 @@ function App() {
                   <Dashboard />
                 </ProtectedRoute>
               }
-            ></Route>
+            >
+              <Route path="workouts" element={<Workouts />} />
+              <Route path="nutrition" element={<Nutrition />} />
+              <Route path="progress" element={<Progress />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
 
             <Route path="health-fitness-survey" element={<Survey />} />
             <Route
