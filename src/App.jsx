@@ -13,6 +13,7 @@ import { Toaster } from 'react-hot-toast'
 import ThemeContextProvider from './context/ThemeContext'
 import Survey from './features/survey/pages/Survey'
 import PolicyPage from './pages/PolicyPage'
+import Dashboard from './pages/Dashboard'
 
 const queryClient = new QueryClient()
 
@@ -25,12 +26,16 @@ function App() {
             <Route element={<AppLayout />}>
               <Route index element={<Home />} />
             </Route>
+
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="reset-password" element={<ResetPassword />}>
               <Route index element={<SendResetEmail />} />
               <Route path="change" element={<ChangePassword />} />
             </Route>
+
+            <Route path="/user/:username" element={<Dashboard />}></Route>
+
             <Route path="health-fitness-survey" element={<Survey />} />
             <Route
               path="terms-of-service"

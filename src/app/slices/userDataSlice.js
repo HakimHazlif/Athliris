@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { createFitnessProfile } from '../../features/survey/service/apiUserData'
+import toast from 'react-hot-toast'
 
 const initialState = {
   user: {
@@ -135,10 +136,12 @@ const userDataSlice = createSlice({
       .addCase(createFitnessProfile.rejected, (state, action) => {
         state.error = action.payload
         state.status = 'failed'
+        toast.error(action.payload)
       })
       .addCase(createFitnessProfile.fulfilled, (state) => {
         state.error = null
         state.status = 'succeeded'
+        toast.success('Your information has been saved')
       })
   },
 })

@@ -43,9 +43,9 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  useEffect(() => {
-    if (isLoggedIn) navigate('/health-fitness-survey', { replace: true })
-  }, [isLoggedIn, navigate])
+  // useEffect(() => {
+  //   if (isLoggedIn) navigate('/health-fitness-survey', { replace: true })
+  // }, [isLoggedIn, navigate])
 
   return (
     <div className="min-h-screen main-bg flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -61,9 +61,16 @@ const Signup = () => {
               confirmPassword: '',
             }}
             validationSchema={SignupSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              dispatch(signup(values))
-              setSubmitting(false)
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                // eslint-disable-next-line no-unused-expressions
+                await dispatch(signup(values))
+              } catch (error) {
+                throw new Error(error)
+              } finally {
+                setSubmitting(false)
+                navigate('/health-fitness-survey', { replace: true })
+              }
             }}
           >
             {({ isSubmitting, errors, touched }) => (

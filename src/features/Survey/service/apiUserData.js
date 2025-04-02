@@ -11,7 +11,7 @@ export const createFitnessProfile = createAsyncThunk(
       const modifiedSurveyData = modifyUserData(surveyData)
 
       console.log({ modifiedSurveyData, userId })
-      // await setDoc(doc(db, 'fitnessProfiles', userId), surveyData)
+      await setDoc(doc(db, 'fitnessProfiles', userId), modifiedSurveyData)
     } catch (error) {
       return rejectWithValue(error.message)
     }

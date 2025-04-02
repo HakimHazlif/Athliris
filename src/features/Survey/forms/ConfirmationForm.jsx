@@ -10,11 +10,13 @@ import {
 } from '../../../app/slices/userDataSlice'
 import { createFitnessProfile } from '../service/apiUserData'
 import { user } from '../../../app/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const ConfirmationForm = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const userData = useSelector(healthFitnessUser)
-  const { uid } = useSelector(user)
+  const { uid, username } = useSelector(user)
 
   // console.log(userData)
 
@@ -22,11 +24,18 @@ const ConfirmationForm = () => {
     <Formik
       initialValues={userData.userAgreements}
       validationSchema={ConfirmationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log('start')
-        dispatch(setUserAgreements(values))
-        dispatch(createFitnessProfile({ userId: uid, surveyData: userData }))
-        setSubmitting(false)
+      onSubmit={async (values, { setSubmitting }) => {
+        try {
+          dispatch(setUserAgreements(values))
+          await dispatch(
+            createFitnessProfile({ userId: uid, surveyData: userData })
+          )
+        } catch (error) {
+          throw new Error(error)
+        } finally {
+          setSubmitting(false)
+          navigate(`/user/${username.replace(' ', '-')}`)
+        }
       }}
     >
       {() => {
