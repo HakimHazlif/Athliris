@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         oswald: ['Oswald', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       colors: {
         'neon-100': '#e1fddd', //

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { IoClose, IoMenu } from 'react-icons/io5'
 
 import AuthButtons from '../features/auth/components/AuthButtons'
-import Logo from './Logo'
+import Logo from './ui/Logo'
 import Navbar from './Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import UserProfile from '../features/auth/components/UserProfile'
@@ -10,7 +10,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../api/firebase'
 import { setUser, setUserFailure } from '../app/slices/authSlice'
 import ProfileMenu from '../features/auth/components/ProfileMenu'
-import ThemeToggle from './ThemeToggle'
+import ThemeToggle from './ui/ThemeToggle'
 
 const Header = () => {
   const dispatch = useDispatch()

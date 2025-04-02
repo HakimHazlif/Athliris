@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import UserAvatar from '../../../components/UserAvatar'
+import UserAvatar from '../../../components/ui/UserAvatar'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { user } from '../../../app/slices/authSlice'

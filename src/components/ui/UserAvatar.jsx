@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { user } from '../app/slices/authSlice'
+import { user } from '../../app/slices/authSlice'
 
 const UserAvatar = ({ size, textSize = 'text-lg' }) => {
   const { username, avatar } = useSelector(user)
@@ -18,7 +18,7 @@ const UserAvatar = ({ size, textSize = 'text-lg' }) => {
         <div
           className={`w-full h-full flex justify-center items-center bg-orange-500 ${textSize} text-slate-200 capitalize `}
         >
-          {username.charAt(0)}
+          {username.charAt(0) || 'A'}
         </div>
       )}
     </div>
