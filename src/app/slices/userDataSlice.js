@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { createFitnessProfile } from '../../features/survey/service/apiUserData'
 import toast from 'react-hot-toast'
+import { getFitnessProfile } from '../../features/fitnessProfile/api/apiFitnessProfile'
 
 const initialState = {
   user: {
@@ -129,20 +130,33 @@ const userDataSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createFitnessProfile.pending, (state) => {
-        state.error = null
-        state.status = 'loading'
-      })
-      .addCase(createFitnessProfile.rejected, (state, action) => {
-        state.error = action.payload
-        state.status = 'failed'
-        toast.error(action.payload)
-      })
       .addCase(createFitnessProfile.fulfilled, (state) => {
         state.error = null
         state.status = 'succeeded'
         toast.success('Your information has been saved')
       })
+      .addCase(getFitnessProfile.fulfilled, (state, action) => {
+        state.error = null
+        state.status = 'succeeded'
+        state.user = action.payload
+      })
+
+    builder
+      .addMatcher(
+        isAnyOf(createFitnessProfile.pending, getFitnessProfile.pending),
+        (state) => {
+          state.error = null
+          state.status = 'loading'
+        }
+      )
+      .addMatcher(
+        isAnyOf(createFitnessProfile.rejected, getFitnessProfile.rejected),
+        (state, action) => {
+          state.error = action.payload
+          state.status = 'failed'
+          toast.error(action.payload)
+        }
+      )
   },
 })
 

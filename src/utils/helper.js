@@ -1,7 +1,9 @@
 export function calculateAge(birthdate) {
   if (!birthdate) return null
 
-  const birthDate = new Date(birthdate)
+  const birthDate = birthdate['seconds']
+    ? new Date(birthdate.seconds * 1000)
+    : new Date(birthdate)
   const today = new Date()
 
   let age = today.getFullYear() - birthDate.getFullYear()
