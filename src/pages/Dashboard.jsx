@@ -28,7 +28,7 @@ const Dashboard = () => {
 
       <div className="flex-1 flex flex-col bg-grayish-200 dark:bg-grayish-700">
         <header className="p-4">
-          <h1 className="text-3xl font-semibold text-grayish-500 dark:text-grayish-300 capitalize">
+          <h1 className="text-4xl font-semibold text-grayish-500 dark:text-grayish-300 capitalize">
             {pathname || 'Dashboard'}
           </h1>
         </header>
