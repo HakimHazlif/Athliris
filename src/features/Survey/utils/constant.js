@@ -159,7 +159,7 @@ export const durationOptions = [
 ]
 
 export const exerciseTypes = [
-  { id: 'strengthTraining', label: 'Strength Training', icon: null },
+  { id: 'weightLifting', label: 'Weight Lifting', icon: null },
   { id: 'cardio', label: 'Cardio', icon: null },
   { id: 'yoga', label: 'Yoga', icon: null },
   { id: 'hiit', label: 'High-Intensity Interval Training (HIIT)', icon: null },

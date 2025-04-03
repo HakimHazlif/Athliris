@@ -15,10 +15,14 @@ import Survey from './features/survey/pages/Survey'
 import PolicyPage from './pages/PolicyPage'
 import Dashboard from './pages/Dashboard'
 import Progress from './features/userProgress/page/Progress'
-import Workouts from './features/Workouts/page/Workouts'
+import Workouts from './features/workouts/page/Workouts'
 import Nutrition from './features/nutrition/page/Nutrition'
 import Settings from './features/settings/page/Settings'
 import ProtectedRoute from './components/ProtectedRoute'
+import WorkoutDetails from './features/workouts/page/WorkoutDetails'
+import WorkoutByBodyPart from './features/workouts/page/WorkoutByBodyPart'
+import WorkoutByEquipment from './features/workouts/page/WorkoutByEquipment'
+import WorkoutByMuscle from './features/workouts/page/WorkoutByMuscle'
 
 const queryClient = new QueryClient()
 
@@ -51,6 +55,19 @@ function App() {
               <Route path="nutrition" element={<Nutrition />} />
               <Route path="progress" element={<Progress />} />
               <Route path="settings" element={<Settings />} />
+              <Route path="workouts/:exerciseId" element={<WorkoutDetails />} />
+              <Route
+                path="workouts/bodyPart/:bodyPart"
+                element={<WorkoutByBodyPart />}
+              />
+              <Route
+                path="workouts/equipment/:equipment"
+                element={<WorkoutByEquipment />}
+              />
+              <Route
+                path="workouts/muscle/:muscle"
+                element={<WorkoutByMuscle />}
+              />
             </Route>
 
             <Route path="health-fitness-survey" element={<Survey />} />
