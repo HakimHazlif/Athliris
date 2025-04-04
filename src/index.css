@@ -78,12 +78,12 @@ button {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #bdbdbd;
+  background: #b9fdad;
   border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #2d2d2d;
+  background: #2fb318;
   border-radius: 10px;
 }
 

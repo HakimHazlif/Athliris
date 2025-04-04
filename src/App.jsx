@@ -23,6 +23,7 @@ import WorkoutDetails from './features/workouts/page/WorkoutDetails'
 import WorkoutByBodyPart from './features/workouts/page/WorkoutByBodyPart'
 import WorkoutByEquipment from './features/workouts/page/WorkoutByEquipment'
 import WorkoutByMuscle from './features/workouts/page/WorkoutByMuscle'
+import RecipePage from './features/nutrition/page/RecipePage'
 
 const queryClient = new QueryClient()
 
@@ -44,7 +45,7 @@ function App() {
             </Route>
 
             <Route
-              path="/user/:username"
+              path="user/:username"
               element={
                 <ProtectedRoute>
                   <Dashboard />
@@ -68,6 +69,7 @@ function App() {
                 path="workouts/muscle/:muscle"
                 element={<WorkoutByMuscle />}
               />
+              <Route path="nutrition/recipe/:id" element={<RecipePage />} />
             </Route>
 
             <Route path="health-fitness-survey" element={<Survey />} />
