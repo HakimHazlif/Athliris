@@ -48,11 +48,12 @@ const Header = () => {
     return () => unsubscribe()
   }, [dispatch])
 
+  // shadow-md bg-gradient-to-br from-blue-900/95 to-indigo-900/95 dark:bg-gradient-to-br dark:from-black/95 dark:to-indigo-950/80 backdrop-blur-sm
   return (
-    <header className="shadow-md ">
+    <header className="shadow-md bg-white dark:bg-grayish-600 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="w-32">
+          <div className="min-w-24 w-32">
             <Logo />
           </div>
 

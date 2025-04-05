@@ -1,82 +1,32 @@
-import { IoHomeSharp, IoSettingsSharp } from 'react-icons/io5'
+import { Link as ScrollLink } from 'react-scroll'
 import { Navigation } from './Navigation'
-import { RiBarChartFill } from 'react-icons/ri'
-import { TbBarbellFilled } from 'react-icons/tb'
-import { FaAppleAlt } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
-import { user } from '../app/slices/authSlice'
 
-const Navbar = ({ forDesktop = true, onClose = null }) => {
-  const { username } = useSelector(user)
-  const modifiedUsername = username.replace(' ', '-')
-
+const Navbar = () => {
   const navigations = [
     {
       link: '/',
-      children: (
-        <>
-          <IoHomeSharp size={18} />
-          <span>Home</span>
-        </>
-      ),
+      text: 'Home',
     },
     {
-      link: `/user/${modifiedUsername}/workouts`,
-      children: (
-        <>
-          <TbBarbellFilled size={18} />
-          <span>Workouts</span>
-        </>
-      ),
+      link: 'features',
+      text: 'Features',
     },
     {
-      link: `/user/${modifiedUsername}/nutrition`,
-      children: (
-        <>
-          <FaAppleAlt size={18} />
-          <span>Nutrition</span>
-        </>
-      ),
-    },
-    {
-      link: `/user/${modifiedUsername}/progress`,
-      children: (
-        <>
-          <RiBarChartFill size={18} />
-          <span>Progress</span>
-        </>
-      ),
-    },
-    {
-      link: `/user/${modifiedUsername}/settings`,
-      children: (
-        <>
-          <IoSettingsSharp size={18} />
-          <span>Settings</span>
-        </>
-      ),
+      link: 'how-it-works',
+      text: 'Guide',
     },
   ]
 
-  const navigationsMap = forDesktop ? navigations.slice(0, 3) : navigations
-
   return (
-    <nav
-      className={
-        forDesktop
-          ? 'hidden md:flex items-center space-x-8'
-          : 'flex flex-col items-start gap-2'
-      }
-    >
-      {navigationsMap.map((el, index) => (
-        <Navigation
+    <nav className="hidden md:flex items-center space-x-8">
+      {navigations.map((el, index) => (
+        <ScrollLink
           key={index}
-          link={el.link}
-          forDesktop={forDesktop}
-          onClose={onClose}
+          to={el.link}
+          className="flex items-center w-full space-x-1 hover:text-neon-600 transition duration-150 cursor-pointer"
         >
-          {el.children}
-        </Navigation>
+          {el.text}
+        </ScrollLink>
       ))}
     </nav>
   )

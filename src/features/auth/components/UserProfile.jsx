@@ -16,7 +16,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative z-50">
       <button
         className="flex items-center gap-2 group"
         ref={profileRef}

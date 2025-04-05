@@ -30,7 +30,9 @@ const Login = () => {
 
   useEffect(() => {
     if (isLoggedIn)
-      navigate(`/user/${username.replace(' ', '-')}`, { replace: true })
+      navigate(`/user/${username.replace(' ', '-')}/workouts`, {
+        replace: true,
+      })
   }, [isLoggedIn, navigate, username])
 
   return (

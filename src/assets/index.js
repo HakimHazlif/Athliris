@@ -8,6 +8,7 @@ import swimming from './swimming.jpg'
 import yoga from './yoga.jpg'
 import workout from './workout.jpg'
 import cardio from './cardio.jpg'
+import hero from './hero.jpeg'
 
 export {
   logoDark,
@@ -20,4 +21,5 @@ export {
   swimming,
   yoga,
   workout,
+  hero,
 }

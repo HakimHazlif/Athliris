@@ -3,10 +3,11 @@ import UserAvatar from '../../../components/ui/UserAvatar'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { user } from '../../../app/slices/authSlice'
-import Navbar from '../../../components/Navbar'
+import Navbar from '../../../components/MenuNavbar'
 import { Link } from 'react-router-dom'
 import { logOut } from '../service/apiAuth'
 import AuthButtons from './AuthButtons'
+import MenuNavbar from '../../../components/MenuNavbar'
 
 const ProfileMenu = ({ onClose, profileRef }) => {
   const dispatch = useDispatch()
@@ -32,13 +33,13 @@ const ProfileMenu = ({ onClose, profileRef }) => {
 
   return (
     <div
-      className="bg-white shadow-lg absolute right-0 sm:top-8 top-7 z-50 text-black w-[270px] max-w-[320px] min-w-[230px] rounded-lg py-4 px-4"
+      className="bg-gray-100 dark:bg-grayish-500 shadow-lg absolute right-0 sm:top-8 top-7 z-50 w-[270px] max-w-[320px] min-w-[230px] rounded-lg py-4 px-4 "
       ref={menuRef}
     >
       {isLoggedIn && (
         <Link
           to={``}
-          className="flex items-center p-3 pl-0 hover:bg-gray-100 rounded-lg transition -mx-3"
+          className="flex items-center p-3 pl-0 dark:hover:bg-grayish-700 hover:bg-gray-300 rounded-lg transition -mx-3"
           onClick={onClose}
         >
           <div className="relative px-3">
@@ -48,12 +49,14 @@ const ProfileMenu = ({ onClose, profileRef }) => {
           </div>
           <div>
             <p className="font-semibold text-lg">{username}</p>
-            <p className="text-slate-500 text-sm">{email}</p>
+            <p className="text-slate-500 dark:text-slate-300 text-sm">
+              {email}
+            </p>
           </div>
         </Link>
       )}
 
-      <Navbar forDesktop={false} onClose={onClose} />
+      <MenuNavbar onClose={onClose} />
       <div className="mt-4">
         {isLoggedIn ? (
           <button
