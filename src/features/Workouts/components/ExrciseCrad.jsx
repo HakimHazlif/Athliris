@@ -12,11 +12,23 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { user } from '../../../app/slices/authSlice'
+import { useAddExercise } from '../../userProgress/hooks/useAddExercise'
+import { useMemo } from 'react'
+import { useSelectedExercises } from '../../userProgress/hooks/useSelectedExercises'
+import { IoRemoveOutline } from 'react-icons/io5'
+import toast from 'react-hot-toast'
+import { useDeleteExercise } from '../../userProgress/hooks/useDeleteExercise'
+import SpinnerMini from '../../../components/ui/SpinnerMini'
+import { IoMdRemove } from 'react-icons/io'
 
 const ExrciseCrad = ({ exercise, type }) => {
-  const { username } = useSelector(user)
+  const { username, uid } = useSelector(user)
   const modifiedUsername = username.replace(' ', '-')
   const navigate = useNavigate()
+
+  const { data, isLoading } = useSelectedExercises()
+  const { isLoading: isAdding, mutate: addExercise } = useAddExercise()
+  const { isLoading: isDeleting, mutate: deleteExercise } = useDeleteExercise()
 
   const { bodyParts, equipments, exerciseId, name } = exercise
 
@@ -45,6 +57,22 @@ const ExrciseCrad = ({ exercise, type }) => {
     navigate(link)
   }
 
+  const isSelected = useMemo(() => {
+    const SelecetedSet = new Set(data?.map((ex) => ex.exerciseId))
+
+    return SelecetedSet.has(exerciseId)
+  }, [exerciseId, data])
+
+  function handleAddExercise() {
+    if (uid) addExercise({ exercise, userId: uid })
+    else toast.error('Please log in')
+  }
+
+  function handleDeleteExercise() {
+    if (uid) deleteExercise({ exercise, userId: uid })
+    else toast.error('Please log in')
+  }
+
   return (
     <div className="w-[220px] max-w-[260] min-w-[200px] mx-auto rounded-xl overflow-hidden shadow-xl dark:bg-grayish-600">
       <div
@@ -53,8 +81,17 @@ const ExrciseCrad = ({ exercise, type }) => {
       >
         <div className="absolute inset-0 bg-black/20 rounded-xl"></div>
 
-        <button className="absolute right-2 top-2 w-8 h-8 flex justify-center items-center rounded-full bg-black/30 text-neon-300 font-semibold py-2 hover:text-white hover:bg-neon-600 transition z-40">
-          <FaPlus />
+        <button
+          onClick={isSelected ? handleDeleteExercise : handleAddExercise}
+          className="absolute right-2 top-2 w-8 h-8 flex justify-center items-center rounded-full bg-black/30 text-neon-300 font-semibold py-2 hover:text-white hover:bg-neon-600 transition z-40"
+        >
+          {isLoading || isAdding || isDeleting ? (
+            <SpinnerMini />
+          ) : isSelected ? (
+            <IoMdRemove />
+          ) : (
+            <FaPlus />
+          )}
         </button>
       </div>
 

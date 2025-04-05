@@ -59,6 +59,7 @@ const initialState = {
       dataConsentAgreement: true,
     },
     unit: 'metric',
+    selectedExercises: [], // I added it here to build a document in Firebase even though I didn't use it. Instead I used react query for remote management
   },
   stage: 1,
   error: null,
@@ -69,6 +70,9 @@ const userDataSlice = createSlice({
   name: 'userData',
   initialState,
   reducers: {
+    addExersice: (state, action) => {
+      state.user.selectedExercises.push(action.payload)
+    },
     setPersonalData: (state, action) => {
       state.user.personalData = action.payload
     },
