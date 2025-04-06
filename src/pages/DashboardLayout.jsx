@@ -5,9 +5,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { user } from '../app/slices/authSlice'
 import { getFitnessProfile } from '../features/fitnessProfile/api/apiFitnessProfile'
-import Spinner from '../components/ui/Spinner'
 
-const Dashboard = () => {
+const DashboardLayout = () => {
   const dispatch = useDispatch()
   const { isLoggedIn } = useSelector((state) => state.userAuth)
   const { uid } = useSelector(user)
@@ -37,4 +36,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default DashboardLayout

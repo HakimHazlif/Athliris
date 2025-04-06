@@ -13,7 +13,7 @@ import { Toaster } from 'react-hot-toast'
 import ThemeContextProvider from './context/ThemeContext'
 import Survey from './features/survey/pages/Survey'
 import PolicyPage from './pages/PolicyPage'
-import Dashboard from './pages/Dashboard'
+import DashboardLayout from './pages/DashboardLayout'
 import Progress from './features/userProgress/page/Progress'
 import Workouts from './features/workouts/page/Workouts'
 import Nutrition from './features/nutrition/page/Nutrition'
@@ -48,7 +48,7 @@ function App() {
               path="user/:username"
               element={
                 <ProtectedRoute>
-                  <Dashboard />
+                  <DashboardLayout />
                 </ProtectedRoute>
               }
             >
