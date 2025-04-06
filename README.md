@@ -110,6 +110,8 @@ A React-based web application for health and fitness tracking featuring:
   npm install
 ```
 
+### Set up environment variables:
+
 ```env
   VITE_FIREBASE_KEY=your_firebase_key
   VITE_FIREBASE_DOMAIN=_your_domain
@@ -130,3 +132,15 @@ A React-based web application for health and fitness tracking featuring:
 ```bash
   npm run dev
 ```
+
+## 🤝 Contributing
+
+1. Fork the project
+
+2. Create your feature branch (git checkout -b feature/AmazingFeature)
+
+3. Commit your changes (git commit -m 'Add some amazing feature')
+
+4. Push to the branch (git push origin feature/AmazingFeature)
+
+5. Open a Pull Request
