@@ -87,7 +87,7 @@ const Login = () => {
           <div className="flex justify-center mt-4">
             <Link
               to="/reset-password"
-              className="text-sm text-grayish-400 hover:text-grayish-500 text-center"
+              className="text-sm text-grayish-400 hover:text-grayish-400 dark:text-grayish-300 dark:hover:text-grayish-200 text-center"
             >
               Forget password?
             </Link>

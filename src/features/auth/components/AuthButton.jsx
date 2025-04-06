@@ -11,7 +11,7 @@ const AuthButton = ({ text, className }) => {
   return (
     <button
       onClick={handleNavigation}
-      className={`${className} font-medium px-4 py-2 rounded-md transition duration-200 w-1/2`}
+      className={`${className} font-medium px-4 py-1.5 rounded-md transition duration-200 w-1/2`}
     >
       {text}
     </button>

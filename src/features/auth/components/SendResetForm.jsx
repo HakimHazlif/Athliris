@@ -21,8 +21,8 @@ const SendResetForm = () => {
 
   return (
     <>
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 dark:bg-grayish-700">
           <Formik
             initialValues={{
               email: '',
@@ -55,7 +55,7 @@ const SendResetForm = () => {
           <div className="flex justify-center mt-4">
             <Link
               to="/login"
-              className="text-sm text-grayish-400 hover:text-grayish-500 text-center flex gap-2 items-center"
+              className="text-sm text-grayish-400 hover:text-grayish-400 dark:text-grayish-300 dark:hover:text-grayish-200 text-center flex gap-2 items-center"
             >
               <IoIosArrowBack size={18} />
               <span>Back to Login</span>

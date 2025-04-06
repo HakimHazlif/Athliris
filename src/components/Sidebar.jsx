@@ -4,7 +4,7 @@ import Logo from './ui/Logo'
 import { useSelector } from 'react-redux'
 import { user } from '../app/slices/authSlice'
 import { RiBarChartFill } from 'react-icons/ri'
-import { FaAppleAlt } from 'react-icons/fa'
+import { FaAppleAlt, FaCalendarAlt } from 'react-icons/fa'
 import { TbBarbellFilled } from 'react-icons/tb'
 
 const Sidebar = () => {
@@ -34,8 +34,8 @@ const Sidebar = () => {
             />
             <NavItem
               to={`/user/${modifiedUsername}/progress`}
-              icon={<RiBarChartFill size={18} />}
-              text="Progress"
+              icon={<FaCalendarAlt size={18} />}
+              text="Program"
             />
             <NavItem
               to={`/user/${modifiedUsername}/settings`}

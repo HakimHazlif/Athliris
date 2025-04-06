@@ -38,7 +38,7 @@ const RecipePage = () => {
           <img
             src={data?.image}
             alt={data?.title}
-            className="w-full h-64 object-cover rounded-lg shadow-lg"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
           />
         </div>
 
