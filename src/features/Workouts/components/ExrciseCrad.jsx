@@ -1,4 +1,4 @@
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus, FaTimes } from 'react-icons/fa'
 import {
   cardio,
   cycling,
@@ -34,7 +34,7 @@ const ExrciseCrad = ({ exercise, type }) => {
 
   function getCardImage() {
     switch (type) {
-      case 'running':
+      case 'Running':
         return running
       case 'Cycling':
         return cycling
@@ -63,13 +63,15 @@ const ExrciseCrad = ({ exercise, type }) => {
     return SelecetedSet.has(exerciseId)
   }, [exerciseId, data])
 
+  const exerciseWithType = { ...exercise, type }
+
   function handleAddExercise() {
-    if (uid) addExercise({ exercise, userId: uid })
+    if (uid) addExercise({ exercise: exerciseWithType, userId: uid })
     else toast.error('Please log in')
   }
 
   function handleDeleteExercise() {
-    if (uid) deleteExercise({ exercise, userId: uid })
+    if (uid) deleteExercise({ exercise: exerciseWithType, userId: uid })
     else toast.error('Please log in')
   }
 
@@ -88,7 +90,7 @@ const ExrciseCrad = ({ exercise, type }) => {
           {isLoading || isAdding || isDeleting ? (
             <SpinnerMini />
           ) : isSelected ? (
-            <IoMdRemove />
+            <FaTimes />
           ) : (
             <FaPlus />
           )}

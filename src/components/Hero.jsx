@@ -1,12 +1,16 @@
 import { FiArrowRight } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { hero } from '../assets'
+import { useSelector } from 'react-redux'
+import { user } from '../app/slices/authSlice'
 
 function Hero() {
+  const { uid, username } = useSelector(user)
   const navigate = useNavigate()
 
   const handleNavigate = () => {
-    navigate('/signup')
+    if (uid) navigate(`/user/${username.replace(' ', '-')}/workouts`)
+    else navigate('/signup')
   }
   return (
     <section className=" w-full min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden text-white">

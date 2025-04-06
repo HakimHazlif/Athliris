@@ -8,8 +8,10 @@ import { user } from '../app/slices/authSlice'
 import { healthFitnessUser } from '../app/slices/userDataSlice'
 import { calculateAge } from '../utils/helper'
 import { FiBell } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 
 const UserPanel = () => {
+  const navigate = useNavigate()
   const { username } = useSelector(user)
   const { personalData, unit } = useSelector(healthFitnessUser)
   return (
@@ -19,7 +21,14 @@ const UserPanel = () => {
           <IoIosArrowDown size={16} />
           <UserAvatar size="w-6 h-6" textSize="text-xs" />
         </button>
-        <IoSettingsOutline size={26} />
+
+        <button
+          onClick={() =>
+            navigate(`/user/${username.replace(' ', '-')}/settings`)
+          }
+        >
+          <IoSettingsOutline size={26} />
+        </button>
         <ThemeToggle />
       </div>
 
@@ -55,13 +64,13 @@ const UserPanel = () => {
           </div>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-10 h-full">
           <div className="flex justify-between items-center">
             <h3>Reminders</h3>
             <FiBell size={18} />
           </div>
-          <div>
-            <p className="dark:text-gray-500 text-gray-400 text-sm mt-4 text-center">
+          <div className="h-full flex justify-center items-center">
+            <p className="dark:text-gray-500 text-gray-400 text-sm mt-4">
               No reminders yet
             </p>
           </div>

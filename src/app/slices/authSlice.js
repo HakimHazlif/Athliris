@@ -7,6 +7,7 @@ import {
   signup,
 } from '../../features/auth/service/apiAuth'
 import toast from 'react-hot-toast'
+import { changeUsernameAndAvatar } from '../../features/settings/api/apiSettings'
 
 const initialState = {
   user: {
@@ -73,6 +74,10 @@ const authSlice = createSlice({
 
         toast.success('Password has been reset successfully!')
       })
+      .addCase(changeUsernameAndAvatar.fulfilled, (state, action) => {
+        state.user.username = action.payload?.username ?? state.user.username
+        state.user.avatar = action.payload?.avatar ?? state.user.avatar
+      })
 
     builder
       .addMatcher(
@@ -81,7 +86,8 @@ const authSlice = createSlice({
           login.pending,
           logOut.pending,
           sendResetEmail.pending,
-          resetPassword.pending
+          resetPassword.pending,
+          changeUsernameAndAvatar.pending
         ),
         (state) => {
           state.status = 'loading'
@@ -94,7 +100,8 @@ const authSlice = createSlice({
           login.rejected,
           logOut.rejected,
           sendResetEmail.rejected,
-          resetPassword.rejected
+          resetPassword.rejected,
+          changeUsernameAndAvatar.rejected
         ),
         (state, action) => {
           state.status = 'failed'

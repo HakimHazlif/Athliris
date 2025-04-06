@@ -61,7 +61,7 @@ const Features = () => {
               key={index}
               className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="rounded-full bg-neon-100 dark:bg-neon-700/30 p-3 w-12 h-12 flex items-center justify-center mb-4 text-neon-600 dark:text-neon-500">
+              <div className="rounded-full bg-neon-100 dark:bg-neon-700/20 p-3 w-12 h-12 flex items-center justify-center mb-4 text-neon-600 dark:text-neon-500">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">

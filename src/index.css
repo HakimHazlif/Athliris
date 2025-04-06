@@ -42,7 +42,7 @@ button {
 
 @layer utilities {
   .dark-mode {
-    @apply bg-[#1e1e1e] text-white;
+    @apply bg-[#121212] text-white;
   }
 
   .light-mode {
@@ -82,12 +82,12 @@ button {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #b9fdad;
+  background: rgb(176, 176, 176);
   border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #2fb318;
+  background: #696767;
   border-radius: 10px;
 }
 

@@ -34,7 +34,7 @@ const ConfirmationForm = () => {
           throw new Error(error)
         } finally {
           setSubmitting(false)
-          navigate(`/user/${username.replace(' ', '-')}`)
+          navigate(`/user/${username.replace(' ', '-')}/workouts`)
         }
       }}
     >

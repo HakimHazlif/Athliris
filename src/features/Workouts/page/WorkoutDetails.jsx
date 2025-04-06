@@ -13,7 +13,7 @@ const WorkoutDetails = () => {
   if (isLoading) return <Spinner />
 
   return (
-    <div className="max-w-2xl mx-auto p-6 shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto p-6 shadow-lg rounded-lg dark:bg-grayish-600 bg-white">
       <h1 className="text-3xl font-bold mb-10 text-center capitalize ">
         {data?.name} exercise
       </h1>

@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import { user } from '../../app/slices/authSlice'
 
 const UserAvatar = ({ size, textSize = 'text-lg' }) => {
+  // size = 'w-10 h-10'
   const { username, avatar } = useSelector(user)
 
   return (
