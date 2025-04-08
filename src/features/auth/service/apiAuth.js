@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { auth, db } from '../../../api/firebase'
+import { auth } from '../../../api/firebase'
 import {
   confirmPasswordReset,
   createUserWithEmailAndPassword,
@@ -8,7 +8,7 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth'
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
+// import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 
 export const signup = createAsyncThunk(
   'user/signup',
@@ -27,14 +27,14 @@ export const signup = createAsyncThunk(
         displayName: `${firstName} ${lastName}`,
       })
 
-      await setDoc(doc(db, 'users', user.uid), {
-        firstName,
-        lastName,
-        email: user.email,
-        avatar: user.photoURL || '',
-        createdAt: serverTimestamp(),
-        lastSignin: serverTimestamp(),
-      })
+      // await setDoc(doc(db, 'users', user.uid), {
+      //   firstName,
+      //   lastName,
+      //   email: user.email,
+      //   avatar: user.photoURL || '',
+      //   createdAt: serverTimestamp(),
+      //   lastSignin: serverTimestamp(),
+      // })
 
       return {
         uid: user.uid,

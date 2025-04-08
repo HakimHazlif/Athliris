@@ -29,14 +29,14 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   useEffect(() => {
-    if (isLoggedIn)
+    if (isLoggedIn && username)
       navigate(`/user/${username.replace(' ', '-')}/workouts`, {
         replace: true,
       })
   }, [isLoggedIn, navigate, username])
 
   return (
-    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 main-bg">
+    <div className="min-h-screen bg-gray-200 dark:bg-grayish-800 flex flex-col justify-center py-12 sm:px-6 lg:px-8 main-bg">
       <AuthHeader isLogin={true} />
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white dark:bg-grayish-700 py-8 px-4 shadow sm:rounded-lg sm:px-10">
@@ -46,14 +46,9 @@ const Login = () => {
               password: '',
             }}
             validationSchema={LoginSchema}
-            onSubmit={async (values, { setSubmitting }) => {
-              try {
-                await dispatch(login(values))
-              } catch (error) {
-                throw new Error(error)
-              } finally {
-                setSubmitting(false)
-              }
+            onSubmit={(values, { setSubmitting }) => {
+              dispatch(login(values))
+              setSubmitting(false)
             }}
           >
             {({ isSubmitting }) => (

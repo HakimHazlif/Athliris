@@ -38,17 +38,17 @@ const SignupSchema = Yup.object().shape({
 const Signup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { isLoggedIn } = useSelector((state) => state.userAuth)
+  const { status, isLoggedIn } = useSelector((state) => state.userAuth)
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  // useEffect(() => {
-  //   if (isLoggedIn) navigate('/health-fitness-survey', { replace: true })
-  // }, [isLoggedIn, navigate])
+  useEffect(() => {
+    if (isLoggedIn) navigate('/health-fitness-survey', { replace: true })
+  }, [isLoggedIn, navigate])
 
   return (
-    <div className="min-h-screen main-bg flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-200 dark:bg-grayish-800 main-bg flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <AuthHeader isLogin={false} />
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white dark:bg-grayish-700 py-8 px-4 shadow sm:rounded-lg sm:px-10">
@@ -61,16 +61,9 @@ const Signup = () => {
               confirmPassword: '',
             }}
             validationSchema={SignupSchema}
-            onSubmit={async (values, { setSubmitting }) => {
-              try {
-                // eslint-disable-next-line no-unused-expressions
-                await dispatch(signup(values))
-              } catch (error) {
-                throw new Error(error)
-              } finally {
-                setSubmitting(false)
-                navigate('/health-fitness-survey', { replace: true })
-              }
+            onSubmit={(values, { setSubmitting }) => {
+              dispatch(signup(values))
+              setSubmitting(false)
             }}
           >
             {({ isSubmitting, errors, touched }) => (
