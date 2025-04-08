@@ -109,26 +109,26 @@ const userDataSlice = createSlice({
     switchUnit: (state) => {
       if (state.user.unit === 'metric') {
         state.user.unit = 'imperial'
-        state.user.personalData.height =
-          Number(state.user.personalData.height) * 0.393700787
-        state.user.personalData.weight =
-          Number(state.user.personalData.weight) * 2.20462262
+        // state.user.personalData.height =
+        //   Number(state.user.personalData.height) * 0.393700787
+        // state.user.personalData.weight =
+        //   Number(state.user.personalData.weight) * 2.20462262
 
-        state.user.fitnessGoals.targetWeight =
-          Number(state.user.fitnessGoals.targetWeight) * 2.20462262
-        state.user.fitnessGoals.desiredWeightChange =
-          Number(state.user.fitnessGoals.desiredWeightChange) * 2.20462262
+        // state.user.fitnessGoals.targetWeight =
+        //   Number(state.user.fitnessGoals.targetWeight) * 2.20462262
+        // state.user.fitnessGoals.desiredWeightChange =
+        //   Number(state.user.fitnessGoals.desiredWeightChange) * 2.20462262
       } else {
         state.user.unit = 'metric'
-        state.user.personalData.height =
-          Number(state.user.personalData.height) * 2.54
-        state.user.personalData.weight =
-          Number(state.user.personalData.weight) * 0.45359237
+        // state.user.personalData.height =
+        //   Number(state.user.personalData.height) * 2.54
+        // state.user.personalData.weight =
+        //   Number(state.user.personalData.weight) * 0.45359237
 
-        state.user.fitnessGoals.targetWeight =
-          Number(state.user.fitnessGoals.targetWeight) * 0.45359237
-        state.user.fitnessGoals.desiredWeightChange =
-          Number(state.user.fitnessGoals.desiredWeightChange) * 0.45359237
+        // state.user.fitnessGoals.targetWeight =
+        //   Number(state.user.fitnessGoals.targetWeight) * 0.45359237
+        // state.user.fitnessGoals.desiredWeightChange =
+        //   Number(state.user.fitnessGoals.desiredWeightChange) * 0.45359237
       }
     },
   },
