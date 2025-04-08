@@ -20,7 +20,7 @@ const Sidebar = () => {
         </div>
 
         <nav className="">
-          <ul className="">
+          <ul className="grid grid-flow-row gap-2">
             <NavItem to="/" icon={<IoHomeSharp size={18} />} text="Home" />
             <NavItem
               to={`/user/${modifiedUsername}/workouts`}
